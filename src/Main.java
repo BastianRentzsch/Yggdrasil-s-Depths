@@ -3,6 +3,7 @@ import dungeon.Dungeon;
 import dungeon.Room;
 import entitySystem.Player;
 import game.Game;
+import utils.ConsoleUtils;
 
 void main() {
     // Dungeon
@@ -19,6 +20,7 @@ void main() {
     Game game = new Game( dungeon, player, parser );
 
     // Start
+    ConsoleUtils.clearConsole();
     game.start();
 
 }
