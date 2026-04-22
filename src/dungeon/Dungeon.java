@@ -1,36 +1,31 @@
 package dungeon;
 
-import itemSystem.Consumable;
-import itemSystem.Weapon;
-
 import java.util.*;
 
 import static dungeon.SidesCodex.sidesCodex;
+import static itemSystem.ItemCodex.itemCodex;
 
+// Responsible for building and initializing the full dungeon layout
 public class Dungeon {
+    // Creates all rooms, connects them, assigns visuals (sides), and places items
     public static List<Room> createDungeon() {
         List<Room> rooms = new ArrayList<>();
 
+        // Create 36 rooms
         for (int i = 0; i < 36; i++) {
             rooms.add( new Room() );
         }
 
-        // Exits added
+        // Add structure to the dungeon
         addExits( rooms );
-
-        // Sides added
-        addSides(rooms);
-
-        // Items
-        rooms.get( 15 ).addItem( new Weapon( "Old sword", "old rusted iron sword", 2 ) );
-        rooms.get( 15 ).addItem( new Weapon( "Sword", "Plain iron sword", 3 ) );
-        rooms.get( 15 ).addItem( new Consumable( "hi-potion", "Heals 20 HP", 20 ) );
-        rooms.get( 16 ).addItem( new Consumable( "Potion", "Heals 10 HP", 10 ) );
+        addSides( rooms );
+        addItems( rooms );
 
         return rooms;
     }
 
-    static private void addExits(List<Room> rooms ) {
+    // Defines how rooms are connected via exits (north, south, east, west)
+    static private void addExits( List<Room> rooms ) {
         // First Row
         rooms.get( 0 ).addExit( new Exit( Direction.EAST, rooms.get( 1 ) ) );
         rooms.get( 0 ).addExit( new Exit( Direction.SOUTH, rooms.get( 6 ) ) );
@@ -142,10 +137,10 @@ public class Dungeon {
         rooms.get( 34 ).addExit( new Exit( Direction.EAST, rooms.get( 35 ) ) );
 
         rooms.get( 35 ).addExit( new Exit( Direction.WEST, rooms.get( 34 ) ) );
-
     }
 
-    static private void addSides(List<Room> rooms ) {
+    // Assigns ASCII-art visual representations to each room side
+    static private void addSides( List<Room> rooms ) {
         // First Row
         rooms.get( 0 ).addSide(Direction.NORTH, sidesCodex.get( 0 ) );
         rooms.get( 0 ).addSide(Direction.EAST, sidesCodex.get( 1 ) );
@@ -331,6 +326,16 @@ public class Dungeon {
         rooms.get( 35 ).addSide(Direction.EAST, sidesCodex.get( 9 ) );
         rooms.get( 35 ).addSide(Direction.SOUTH, sidesCodex.get( 0 ) );
         rooms.get( 35 ).addSide(Direction.WEST, sidesCodex.get( 18 ) );
+    }
 
+    // Places items into specific rooms using the ItemCodex registry
+    static private void addItems( List<Room> rooms ) {
+        rooms.get( 15 ).addItem( itemCodex.get( "potion" ) );
+        rooms.get( 15 ).addItem( itemCodex.get( "Old sword" ) );
+        rooms.get( 15 ).addItem( itemCodex.get( "Leather Armor ") );
+
+        rooms.get( 16 ).addItem( itemCodex.get( "hi-potion" ) );
+        rooms.get( 16 ).addItem( itemCodex.get( "Sword" ) );
+        rooms.get( 16 ).addItem( itemCodex.get( "Iron Armor ") );
     }
 }

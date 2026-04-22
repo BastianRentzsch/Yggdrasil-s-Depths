@@ -2,20 +2,6 @@ package commandSystem;
 
 import java.util.List;
 
-public class ParsedCommand {
-    private final String verb;
-    private final List<String> args;
-
-    public ParsedCommand( String verb, List<String> args ) {
-        this.verb = verb;
-        this.args = args;
-    }
-
-    public String getVerb() {
-        return verb;
-    }
-
-    public List<String> getArgs() {
-        return args;
-    }
+// A record that stores a command with its name (verb) and a list of arguments (args)
+public record ParsedCommand(String verb, List<String> args) {
 }

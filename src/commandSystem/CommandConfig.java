@@ -1,9 +1,11 @@
 package commandSystem;
 
+// Configures and returns a CommandParser with all available commands registered
 public class CommandConfig {
     public static CommandParser createParser() {
         CommandRegistry registry = new CommandRegistry();
 
+        // Register all valid commands and their corresponding factories
         registry.register( "go", new MoveCommandFactory() );
         registry.register( "move", new MoveCommandFactory() );
         registry.register( "inventory", new InventoryCommandFactory() );

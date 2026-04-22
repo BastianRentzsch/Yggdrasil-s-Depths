@@ -3,21 +3,26 @@ package itemSystem;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents the player's inventory and manages stored items
 public class Inventory {
     private final List<Item> items = new ArrayList<>();
 
+    // Adds an item to the inventory
     public void add( Item item ) {
         items.add( item );
     }
 
+    // Removes an item from the inventory
     public void remove( Item item ) {
         items.remove( item );
     }
 
+    // Returns a copy of all items in the inventory
     public List<Item> getItems() {
         return List.copyOf( items );
     }
 
+    // Finds an item by name (case-insensitive)
     public Item getItem( String itemName ) {
         for ( Item item : items ) {
             if ( item.getName().equalsIgnoreCase( itemName ) ) {
@@ -27,14 +32,7 @@ public class Inventory {
         return null;
     }
 
-    public boolean contains( Item item ) {
-        return items.contains( item );
-    }
-
-    public boolean contains( String itemName ) {
-        return getItem( itemName ) != null;
-    }
-
+    // Prints all items in the inventory
     public void print() {
         if ( items.isEmpty() ) {
             System.out.println( "Inventory is empty." );

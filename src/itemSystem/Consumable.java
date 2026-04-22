@@ -2,6 +2,7 @@ package itemSystem;
 
 import entitySystem.Entity;
 
+// Represents a consumable item that can be used to heal an entity
 public class Consumable extends Item {
     private final int healAmount;
 
@@ -10,6 +11,7 @@ public class Consumable extends Item {
         this.healAmount = healAmount;
     }
 
+    // Uses the item to heal the target entity
     @Override
     public void use( Entity target ) {
         target.heal( healAmount );

@@ -9,6 +9,8 @@ import itemSystem.*;
 import java.util.EnumMap;
 import java.util.Map;
 
+
+// Represents the player character, including movement, inventory, and equipment
 public class Player extends Entity {
     private Room currentRoom;
     private final Map<EquipmentSlot, Item> equipment = new EnumMap<>(EquipmentSlot.class);
@@ -19,18 +21,22 @@ public class Player extends Entity {
         this.currentRoom = startRoom;
     }
 
+    // Returns the room the player is currently in
     public Room getCurrentRoom() {
         return this.currentRoom;
     }
 
+    // Returns the item equipped in a specific slot
     public Item getEquipped( EquipmentSlot slot ) {
         return equipment.get( slot );
     }
 
+    // Returns the direction the player is currently facing
     public Direction getFacing() {
         return facing;
     }
 
+    // Turns the player 90 degrees to the left
     public void turnLeft() {
         switch ( facing ) {
             case NORTH -> facing = Direction.WEST;
@@ -40,6 +46,7 @@ public class Player extends Entity {
         }
     }
 
+    // Turns the player 90 degrees to the right
     public void turnRight() {
         switch ( facing ) {
             case NORTH -> facing = Direction.EAST;
@@ -49,6 +56,7 @@ public class Player extends Entity {
         }
     }
 
+    // Shows what is in front of the player based on the current facing direction
     public void look() {
         Side side = currentRoom.getSide( facing );
 
@@ -57,32 +65,31 @@ public class Player extends Entity {
             return;
         }
 
-        System.out.println( side.getArt() );
+        System.out.println( side.art() );
     }
 
+    // Moves the player in a given direction if an exit exists
     public void move( Direction direction ) {
         Exit exit = currentRoom.getExit( direction );
 
         if ( exit == null ) {
-            System.out.println( "No exit in that direction." );
-            return;
-        }
-
-        if ( !exit.canPass( this ) ) {
             System.out.println( "The way is blocked." );
             return;
         }
 
-        this.currentRoom = exit.getTarget();
+        this.currentRoom = exit.target();
 
         System.out.println( "You moved " + direction + "." );
     }
 
+    // Adds an item to the player's inventory
     public void pickUp( Item item ) {
         inventory.add( item );
         System.out.println( "Picked up: " + item.getName() );
     }
 
+
+    // Equips an item if it is equippable, swapping with existing equipment if needed
     public void equip( Item item ) {
         if ( !( item instanceof Equippable equippable ) ) {
             System.out.println( "You can't equip that." );
@@ -103,9 +110,10 @@ public class Player extends Entity {
         System.out.println( "Equipped " + item.getName() );
     }
 
+    // Drops an item from inventory into the current room
     public void drop( Item item ) {
-        inventory.remove( item ); // Delete from Inventory
-        currentRoom.addItem( item ); // Drop into Room
+        inventory.remove( item );
+        currentRoom.addItem( item );
         System.out.println( "Dropped: " + item.getName() );
     }
 }

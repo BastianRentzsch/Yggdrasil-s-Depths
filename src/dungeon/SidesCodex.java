@@ -3,11 +3,13 @@ package dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+// Stores a collection of predefined room "sides" using ASCII art representations
 public class SidesCodex {
-    static final List<Side> sidesCodex = new ArrayList<>();
+    public static final List<Side> sidesCodex = new ArrayList<>();
 
     static {
-        // roomnr.direction
+        // Each Side contains ASCII art used to visually represent a room layout
+        // The comments indicate which room number and direction the art is used for
 
         // 1.n, 4.s, 25.w, 26.n, 34.s, 35.w, 36.s
         sidesCodex.add( new Side( """

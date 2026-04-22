@@ -5,20 +5,21 @@ import entitySystem.Player;
 import game.Game;
 import utils.ConsoleUtils;
 
+// Entry point of the game: sets up the dungeon, player, and command system, then starts the game loop
 void main() {
-    // Dungeon
+    // Create dungeon layout
     List<Room> dungeon = Dungeon.createDungeon();
 
-    // Player
+    // Create player starting in room 15
     Player player = new Player( "test", 100, dungeon.get( 15 ) );
 
-    // Commands
+    // Create command parser with all registered commands
     CommandParser parser = CommandConfig.createParser();
 
-    // Game
+    // Create game instance
     Game game = new Game( dungeon, player, parser );
 
-    // Start
+    // Clear console and start game
     ConsoleUtils.clearConsole();
     game.start();
 }
