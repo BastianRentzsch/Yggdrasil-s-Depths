@@ -3,7 +3,6 @@ package itemSystem;
 import entitySystem.Entity;
 
 public abstract class Item {
-
     protected String name;
     protected String description;
 
@@ -21,6 +20,4 @@ public abstract class Item {
     public String getDescription() {
         return description;
     }
-
 }
-

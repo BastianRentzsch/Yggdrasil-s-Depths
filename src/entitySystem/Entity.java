@@ -8,7 +8,7 @@ public abstract class Entity {
     protected int maxHealth = 100;
     protected Inventory inventory = new Inventory();
 
-    public Entity(String name) {
+    public Entity( String name ) {
         this.name = name;
     }
 

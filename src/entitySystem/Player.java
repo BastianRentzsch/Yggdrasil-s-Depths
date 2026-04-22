@@ -3,6 +3,7 @@ package entitySystem;
 import dungeon.Direction;
 import dungeon.Exit;
 import dungeon.Room;
+import dungeon.Side;
 import itemSystem.*;
 
 import java.util.EnumMap;
@@ -11,8 +12,9 @@ import java.util.Map;
 public class Player extends Entity {
     private Room currentRoom;
     private final Map<EquipmentSlot, Item> equipment = new EnumMap<>(EquipmentSlot.class);
+    private Direction facing = Direction.NORTH;
 
-    public Player(String name, Room startRoom) {
+    public Player( String name, Room startRoom ) {
         super( name );
         this.currentRoom = startRoom;
     }
@@ -23,6 +25,41 @@ public class Player extends Entity {
 
     public Item getEquipped( EquipmentSlot slot ) {
         return equipment.get( slot );
+    }
+
+    public Direction getFacing() {
+        return facing;
+    }
+
+    public void turnLeft() {
+        switch ( facing ) {
+            case NORTH -> facing = Direction.WEST;
+            case WEST -> facing = Direction.SOUTH;
+            case SOUTH -> facing = Direction.EAST;
+            case EAST -> facing = Direction.NORTH;
+        }
+        System.out.println( "You are now facing " + facing );
+    }
+
+    public void turnRight() {
+        switch ( facing ) {
+            case NORTH -> facing = Direction.EAST;
+            case EAST -> facing = Direction.SOUTH;
+            case SOUTH -> facing = Direction.WEST;
+            case WEST -> facing = Direction.NORTH;
+        }
+        System.out.println( "You are now facing " + facing );
+    }
+
+    public void look() {
+        Side side = currentRoom.getSide( facing );
+
+        if (side == null) {
+            System.out.println( "You see nothing special." );
+            return;
+        }
+
+        System.out.println( side.getArt() );
     }
 
     public void move( Direction direction ) {
@@ -40,9 +77,7 @@ public class Player extends Entity {
 
         this.currentRoom = exit.getTarget();
 
-        System.out.println( currentRoom.toString() );
         System.out.println( "You moved " + direction + "." );
-
     }
 
     public void pickUp( Item item ) {
@@ -51,7 +86,6 @@ public class Player extends Entity {
     }
 
     public void equip( Item item ) {
-
         if ( !( item instanceof Equippable equippable ) ) {
             System.out.println( "You can't equip that." );
             return;
@@ -70,5 +104,4 @@ public class Player extends Entity {
 
         System.out.println( "Equipped " + item.getName() );
     }
-
 }

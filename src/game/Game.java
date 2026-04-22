@@ -1,6 +1,5 @@
 package game;
 
-
 import commandSystem.Command;
 import commandSystem.CommandParser;
 import dungeon.Room;
@@ -10,14 +9,12 @@ import utils.ConsoleUtils;
 import java.util.List;
 import java.util.Scanner;
 
-import static java.lang.Thread.sleep;
-
 public class Game {
     private List<Room> rooms;
     private Player player;
     private final CommandParser parser;
 
-    public Game(List<Room> rooms, Player player, CommandParser parser ) {
+    public Game( List<Room> rooms, Player player, CommandParser parser ) {
         this.rooms = rooms;
         this.player = player;
         this.parser = parser;
@@ -31,11 +28,9 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println( "game.Game started. Type commands (e.g., 'go north')." );
-        boolean started = false;
 
         while ( true ) {
-
-
+            this.player.look();
             System.out.print( "> " );
             String input = scanner.nextLine();
 
@@ -50,5 +45,4 @@ public class Game {
             ConsoleUtils.clearConsole();
         }
     }
-
 }

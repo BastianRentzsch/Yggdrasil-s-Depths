@@ -3,7 +3,6 @@ package itemSystem;
 import entitySystem.Entity;
 
 public class Consumable extends Item {
-
     private final int healAmount;
 
     public Consumable( String name, String description, int healAmount ) {

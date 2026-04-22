@@ -16,12 +16,9 @@ void main() {
     CommandParser parser = CommandConfig.createParser();
 
     // Game
-
     Game game = new Game( dungeon, player, parser );
 
     // Start
-    ConsoleUtils.clearConsole();
+//    ConsoleUtils.clearConsole();
     game.start();
-
 }
-

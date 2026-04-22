@@ -3,7 +3,6 @@ package itemSystem;
 import entitySystem.Entity;
 
 public class Armor extends Item implements Equippable {
-
     private final int defense;
 
     public Armor( String name, String description, int defense ) {
@@ -22,6 +21,6 @@ public class Armor extends Item implements Equippable {
 
     @Override
     public void use( Entity target ) {
-        // meistens leer oder special
+        // empty because one does not use it
     }
 }

@@ -1,7 +1,6 @@
 package utils;
 
 public class ConsoleUtils {
-
     public static void clearConsole() {
         try {
             String os = System.getProperty( "os.name" ).toLowerCase();

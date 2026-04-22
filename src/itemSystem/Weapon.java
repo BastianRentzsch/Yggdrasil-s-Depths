@@ -3,7 +3,6 @@ package itemSystem;
 import entitySystem.Entity;
 
 public class Weapon extends Item implements Equippable {
-
     private final int damage;
 
     public Weapon( String name, String description, int damage ) {
