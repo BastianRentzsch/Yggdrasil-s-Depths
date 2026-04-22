@@ -1,9 +1,9 @@
 package dungeon;
 
 public class Side {
-    private String art;
+    private final String art;
 
-    Side( String art ) {
+    public Side( String art ) {
         this.art = art;
     }
 

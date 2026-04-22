@@ -7,6 +7,7 @@ import java.util.*;
 public class Room {
     private final Map<Direction, Exit> exits = new EnumMap<>( Direction.class );
     private final List<Item> items = new ArrayList<>();
+    private Map<Direction, Side> sides = new EnumMap<>(Direction.class);
 
     public void addExit( Exit exit ) {
         exits.put( exit.getDirection(), exit );
@@ -14,6 +15,14 @@ public class Room {
 
     public Exit getExit( Direction direction ) {
         return exits.get( direction );
+    }
+
+    public  void addSide( Direction direction, Side side ) {
+        sides.put( direction, side);
+    }
+
+    public Side getSide( Direction direction ) {
+        return sides != null ? sides.get( direction ) : null;
     }
 
     public void addItem( Item item ) {
@@ -41,10 +50,5 @@ public class Room {
             }
         }
         return null;
-    }
-
-
-    public String toString() {
-        return Objects.toString( exits );
     }
 }
