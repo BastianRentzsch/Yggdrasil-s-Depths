@@ -3,7 +3,6 @@ package commandSystem;
 import dungeon.Direction;
 
 public class MoveCommandFactory implements CommandFactory {
-
     @Override
     public Command create( ParsedCommand input ) {
         if ( input.getArgs().isEmpty() ) {

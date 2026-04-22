@@ -1,5 +1,5 @@
 package commandSystem;
 
 public interface CommandFactory {
-    Command create( ParsedCommand input );
+    Command create(ParsedCommand input);
 }

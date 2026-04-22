@@ -1,7 +1,6 @@
 package commandSystem;
 
 public class EquipCommandFactory implements CommandFactory {
-
     @Override
     public Command create( ParsedCommand input ) {
         if ( input.getArgs().isEmpty() ) {

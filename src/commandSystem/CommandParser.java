@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CommandParser {
-
     private final CommandRegistry registry;
 
     public CommandParser( CommandRegistry registry ) {
@@ -29,5 +28,4 @@ public class CommandParser {
 
         return registry.get( verb ).create( new ParsedCommand( verb, args ) );
     }
-
 }

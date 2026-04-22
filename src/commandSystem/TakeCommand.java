@@ -4,7 +4,6 @@ import game.Game;
 import itemSystem.Item;
 
 public class TakeCommand extends Command {
-
     private final String itemName;
 
     public TakeCommand( String itemName ) {

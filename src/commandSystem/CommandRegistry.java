@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandRegistry {
-
     private final Map<String, CommandFactory> factories = new HashMap<>();
 
     public void register( String name, CommandFactory factory ) {

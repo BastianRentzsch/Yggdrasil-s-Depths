@@ -4,7 +4,6 @@ import game.Game;
 import itemSystem.Item;
 
 public class EquipCommand extends Command {
-
     private final String itemName;
 
     public EquipCommand( String itemName ) {
@@ -13,7 +12,6 @@ public class EquipCommand extends Command {
 
     @Override
     public void execute( Game game ) {
-
         var player = game.getPlayer();
 
         Item item = player.getInventory()

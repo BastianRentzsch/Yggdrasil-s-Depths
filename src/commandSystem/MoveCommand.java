@@ -6,7 +6,7 @@ import game.Game;
 public class MoveCommand extends Command {
     private final Direction direction;
 
-    public MoveCommand(Direction direction ) {
+    public MoveCommand( Direction direction ) {
         this.direction = direction;
     }
 

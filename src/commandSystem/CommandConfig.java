@@ -14,6 +14,8 @@ public class CommandConfig {
         registry.register( "inspect", new LookCommandFactory() );
         registry.register( "equip", new EquipCommandFactory() );
         registry.register( "wear", new EquipCommandFactory() );
+        registry.register( "left", new TurnLeftCommandFactory() );
+        registry.register("right", new TurnRightCommandFactory());
 
        return new CommandParser( registry );
     }
