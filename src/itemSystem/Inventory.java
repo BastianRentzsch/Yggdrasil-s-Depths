@@ -18,8 +18,21 @@ public class Inventory {
         return List.copyOf( items );
     }
 
+    public Item getItem( String itemName ) {
+        for ( Item item : items ) {
+            if ( item.getName().equalsIgnoreCase( itemName ) ) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     public boolean contains( Item item ) {
         return items.contains( item );
+    }
+
+    public boolean contains( String itemName ) {
+        return getItem( itemName ) != null;
     }
 
     public void print() {

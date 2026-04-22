@@ -10,7 +10,7 @@ void main() {
     List<Room> dungeon = Dungeon.createDungeon();
 
     // Player
-    Player player = new Player( "test", dungeon.get( 15 ) );
+    Player player = new Player( "test", 100, dungeon.get( 15 ) );
 
     // Commands
     CommandParser parser = CommandConfig.createParser();

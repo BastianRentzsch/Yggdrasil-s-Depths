@@ -14,8 +14,8 @@ public class Player extends Entity {
     private final Map<EquipmentSlot, Item> equipment = new EnumMap<>(EquipmentSlot.class);
     private Direction facing = Direction.NORTH;
 
-    public Player( String name, Room startRoom ) {
-        super( name );
+    public Player( String name, int health, Room startRoom ) {
+        super( name, health );
         this.currentRoom = startRoom;
     }
 
@@ -101,5 +101,11 @@ public class Player extends Entity {
         inventory.remove( item );
 
         System.out.println( "Equipped " + item.getName() );
+    }
+
+    public void drop( Item item ) {
+        inventory.remove( item ); // Delete from Inventory
+        currentRoom.addItem( item ); // Drop into Room
+        System.out.println( "Dropped: " + item.getName() );
     }
 }

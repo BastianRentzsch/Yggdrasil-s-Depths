@@ -4,12 +4,18 @@ import itemSystem.Inventory;
 
 public abstract class Entity {
     protected String name;
-    protected int health = 100;
-    protected int maxHealth = 100;
+    protected int health;
+    protected int maxHealth;
     protected Inventory inventory = new Inventory();
 
-    public Entity( String name ) {
+    public Entity( String name, int health ) {
         this.name = name;
+        this.health = health;
+        this.maxHealth = health;
+    }
+
+    public String getName() {
+        return  this.name;
     }
 
     public void takeDamage( int amount ) {
