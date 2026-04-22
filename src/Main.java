@@ -19,6 +19,6 @@ void main() {
     Game game = new Game( dungeon, player, parser );
 
     // Start
-//    ConsoleUtils.clearConsole();
+    ConsoleUtils.clearConsole();
     game.start();
 }

@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Game {
     private List<Room> rooms;
-    private Player player;
+    private final Player player;
     private final CommandParser parser;
 
     public Game( List<Room> rooms, Player player, CommandParser parser ) {
@@ -30,11 +30,12 @@ public class Game {
         System.out.println( "game.Game started. Type commands (e.g., 'go north')." );
 
         while ( true ) {
+            System.out.println("Direction: " + this.player.getFacing() );
             this.player.look();
             System.out.print( "> " );
             String input = scanner.nextLine();
 
-            Command command = parser.parse( input );
+            Command command = parser.parse( input, this );
 
             if ( command != null ) {
                 command.execute( this );

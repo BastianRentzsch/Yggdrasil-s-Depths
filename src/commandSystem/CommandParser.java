@@ -1,5 +1,7 @@
 package commandSystem;
 
+import game.Game;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +12,7 @@ public class CommandParser {
         this.registry = registry;
     }
 
-    public Command parse( String input ) {
+    public Command parse( String input, Game game ) {
         String trimmed = input.trim();
 
         if ( trimmed.isBlank() ) {
@@ -26,6 +28,6 @@ public class CommandParser {
             return null;
         }
 
-        return registry.get( verb ).create( new ParsedCommand( verb, args ) );
+        return registry.get( verb ).create( new ParsedCommand( verb, args ), game );
     }
 }

@@ -159,13 +159,13 @@ public class Dungeon {
 
         rooms.get( 2 ).addSide(Direction.NORTH, sidesCodex.get( 4 ) );
         rooms.get( 2 ).addSide(Direction.EAST, sidesCodex.get( 6 ) );
-        rooms.get( 2 ).addSide(Direction.SOUTH, sidesCodex.get( 4 ) );
-        rooms.get( 2 ).addSide(Direction.WEST, sidesCodex.get( 8 ) );
+        rooms.get( 2 ).addSide(Direction.SOUTH, sidesCodex.get( 43 ) );
+        rooms.get( 2 ).addSide(Direction.WEST, sidesCodex.get( 28 ) );
 
         rooms.get( 3 ).addSide(Direction.NORTH, sidesCodex.get( 3 ) );
         rooms.get( 3 ).addSide(Direction.EAST, sidesCodex.get( 9 ) );
         rooms.get( 3 ).addSide(Direction.SOUTH, sidesCodex.get( 0 ) );
-        rooms.get( 3 ).addSide(Direction.WEST, sidesCodex.get( 2 ) );
+        rooms.get( 3 ).addSide(Direction.WEST, sidesCodex.get( 8 ) );
 
         rooms.get( 4 ).addSide(Direction.NORTH, sidesCodex.get( 10 ) );
         rooms.get( 4 ).addSide(Direction.EAST, sidesCodex.get( 11 ) );
@@ -179,7 +179,7 @@ public class Dungeon {
 
         // Second Row
         rooms.get( 6 ).addSide(Direction.NORTH, sidesCodex.get( 11 ) );
-        rooms.get( 6 ).addSide(Direction.EAST, sidesCodex.get( 4 ) );
+        rooms.get( 6 ).addSide(Direction.EAST, sidesCodex.get( 36 ) );
         rooms.get( 6 ).addSide(Direction.SOUTH, sidesCodex.get( 13 ) );
         rooms.get( 6 ).addSide(Direction.WEST, sidesCodex.get( 4 ) );
 
@@ -190,12 +190,12 @@ public class Dungeon {
 
         rooms.get( 8 ).addSide(Direction.NORTH, sidesCodex.get( 10 ) );
         rooms.get( 8 ).addSide(Direction.EAST, sidesCodex.get( 17 ) );
-        rooms.get( 8 ).addSide(Direction.SOUTH, sidesCodex.get( 18 ) );
+        rooms.get( 8 ).addSide(Direction.SOUTH, sidesCodex.get( 42 ) );
         rooms.get( 8 ).addSide(Direction.WEST, sidesCodex.get( 15 ) );
 
         rooms.get( 9 ).addSide(Direction.NORTH, sidesCodex.get( 4 ) );
         rooms.get( 9 ).addSide(Direction.EAST, sidesCodex.get( 19 ) );
-        rooms.get( 9 ).addSide(Direction.SOUTH, sidesCodex.get( 7 ) );
+        rooms.get( 9 ).addSide(Direction.SOUTH, sidesCodex.get( 20 ) );
         rooms.get( 9 ).addSide(Direction.WEST, sidesCodex.get( 20 ) );
 
         rooms.get( 10 ).addSide(Direction.NORTH, sidesCodex.get( 4 ) );
@@ -210,19 +210,19 @@ public class Dungeon {
 
         // Third Row
         rooms.get( 12 ).addSide(Direction.NORTH, sidesCodex.get( 24 ) );
-        rooms.get( 12 ).addSide(Direction.EAST, sidesCodex.get( 4 ) );
+        rooms.get( 12 ).addSide(Direction.EAST, sidesCodex.get( 43 ) );
         rooms.get( 12 ).addSide(Direction.SOUTH, sidesCodex.get( 25 ) );
         rooms.get( 12 ).addSide(Direction.WEST, sidesCodex.get( 4 ) );
 
-        rooms.get( 13 ).addSide(Direction.NORTH, sidesCodex.get( 10 ) );
+        rooms.get( 13 ).addSide(Direction.NORTH, sidesCodex.get( 16 ) );
         rooms.get( 13 ).addSide(Direction.EAST, sidesCodex.get( 20 ) );
         rooms.get( 13 ).addSide(Direction.SOUTH, sidesCodex.get( 14 ) );
-        rooms.get( 13 ).addSide(Direction.WEST, sidesCodex.get( 3 ) );
+        rooms.get( 13 ).addSide(Direction.WEST, sidesCodex.get( 15 ) );
 
         rooms.get( 14 ).addSide(Direction.NORTH, sidesCodex.get( 18 ) );
         rooms.get( 14 ).addSide(Direction.EAST, sidesCodex.get( 15 ) );
         rooms.get( 14 ).addSide(Direction.SOUTH, sidesCodex.get( 26 ) );
-        rooms.get( 14 ).addSide(Direction.WEST, sidesCodex.get( 15 ) );
+        rooms.get( 14 ).addSide(Direction.WEST, sidesCodex.get( 20 ) );
 
         rooms.get( 15 ).addSide(Direction.NORTH, sidesCodex.get( 14 ) );
         rooms.get( 15 ).addSide(Direction.EAST, sidesCodex.get( 18 ) );
@@ -237,7 +237,7 @@ public class Dungeon {
         rooms.get( 17 ).addSide(Direction.NORTH, sidesCodex.get( 28 ) );
         rooms.get( 17 ).addSide(Direction.EAST, sidesCodex.get( 4 ) );
         rooms.get( 17 ).addSide(Direction.SOUTH, sidesCodex.get( 29 ) );
-        rooms.get( 17 ).addSide(Direction.WEST, sidesCodex.get( 4 ) );
+        rooms.get( 17 ).addSide(Direction.WEST, sidesCodex.get( 43 ) );
 
         // Fourth Row
         rooms.get( 18 ).addSide(Direction.NORTH, sidesCodex.get( 30 ) );
@@ -245,14 +245,14 @@ public class Dungeon {
         rooms.get( 18 ).addSide(Direction.SOUTH, sidesCodex.get( 6 ) );
         rooms.get( 18 ).addSide(Direction.WEST, sidesCodex.get( 4 ) );
 
-        rooms.get( 19 ).addSide(Direction.NORTH, sidesCodex.get( 18 ) );
+        rooms.get( 19 ).addSide(Direction.NORTH, sidesCodex.get( 27 ) );
         rooms.get( 19 ).addSide(Direction.EAST, sidesCodex.get( 32 ) );
-        rooms.get( 19 ).addSide(Direction.SOUTH, sidesCodex.get( 4 ) );
+        rooms.get( 19 ).addSide(Direction.SOUTH, sidesCodex.get( 43 ) );
         rooms.get( 19 ).addSide(Direction.WEST, sidesCodex.get( 14 ) );
 
-        rooms.get( 20 ).addSide(Direction.NORTH, sidesCodex.get( 4 ) );
+        rooms.get( 20 ).addSide(Direction.NORTH, sidesCodex.get( 36 ) );
         rooms.get( 20 ).addSide(Direction.EAST, sidesCodex.get( 18 ) );
-        rooms.get( 20 ).addSide(Direction.SOUTH, sidesCodex.get( 4 ) );
+        rooms.get( 20 ).addSide(Direction.SOUTH, sidesCodex.get( 36 ) );
         rooms.get( 20 ).addSide(Direction.WEST, sidesCodex.get( 33 ) );
 
         rooms.get( 21 ).addSide(Direction.NORTH, sidesCodex.get( 3 ) );
@@ -267,7 +267,7 @@ public class Dungeon {
 
         rooms.get( 23 ).addSide(Direction.NORTH, sidesCodex.get( 8 ) );
         rooms.get( 23 ).addSide(Direction.EAST, sidesCodex.get( 4 ) );
-        rooms.get( 23 ).addSide(Direction.SOUTH, sidesCodex.get( 18 ) );
+        rooms.get( 23 ).addSide(Direction.SOUTH, sidesCodex.get( 42 ) );
         rooms.get( 23 ).addSide(Direction.WEST, sidesCodex.get( 36 ) );
 
         // Fifth Row
@@ -286,7 +286,7 @@ public class Dungeon {
         rooms.get( 26 ).addSide(Direction.SOUTH, sidesCodex.get( 35 ) );
         rooms.get( 26 ).addSide(Direction.WEST, sidesCodex.get( 20 ) );
 
-        rooms.get( 27 ).addSide(Direction.NORTH, sidesCodex.get( 20 ) );
+        rooms.get( 27 ).addSide(Direction.NORTH, sidesCodex.get( 7 ) );
         rooms.get( 27 ).addSide(Direction.EAST, sidesCodex.get( 4 ) );
         rooms.get( 27 ).addSide(Direction.SOUTH, sidesCodex.get( 18 ) );
         rooms.get( 27 ).addSide(Direction.WEST, sidesCodex.get( 37 ) );

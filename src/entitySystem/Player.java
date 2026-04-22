@@ -38,7 +38,6 @@ public class Player extends Entity {
             case SOUTH -> facing = Direction.EAST;
             case EAST -> facing = Direction.NORTH;
         }
-        System.out.println( "You are now facing " + facing );
     }
 
     public void turnRight() {
@@ -48,7 +47,6 @@ public class Player extends Entity {
             case SOUTH -> facing = Direction.WEST;
             case WEST -> facing = Direction.NORTH;
         }
-        System.out.println( "You are now facing " + facing );
     }
 
     public void look() {
