@@ -11,7 +11,7 @@ void main() {
     List<Room> dungeon = Dungeon.createDungeon();
 
     // Create player starting in room 15
-    Player player = new Player( "test", 100, dungeon.get( 15 ) );
+    Player player = new Player( "test", 15, dungeon.get( 15 ) );
 
     // Create command parser with all registered commands
     CommandParser parser = CommandConfig.createParser();

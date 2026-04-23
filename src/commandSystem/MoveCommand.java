@@ -14,6 +14,6 @@ public class MoveCommand extends Command {
     @Override
     public void execute( Game game ) {
         // Move the player in the specified direction
-        game.getPlayer().move( direction );
+        game.getPlayer().move( direction, game );
     }
 }

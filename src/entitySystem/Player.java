@@ -4,11 +4,12 @@ import dungeon.Direction;
 import dungeon.Exit;
 import dungeon.Room;
 import dungeon.Side;
+import game.EncounterSystem;
+import game.Game;
 import itemSystem.*;
 
 import java.util.EnumMap;
 import java.util.Map;
-
 
 // Represents the player character, including movement, inventory, and equipment
 public class Player extends Entity {
@@ -19,6 +20,48 @@ public class Player extends Entity {
     public Player( String name, int health, Room startRoom ) {
         super( name, health );
         this.currentRoom = startRoom;
+    }
+
+    // Returns a visual health bar representing the player's current health
+    public String getHealth() {
+        int barLength = 20;
+        double healthPercent = ( double ) health / maxHealth;
+
+        int filled = ( int ) ( barLength * healthPercent );
+        int empty = barLength - filled;
+
+        StringBuilder bar = new StringBuilder();
+
+        bar.repeat( "█", Math.max( 0, filled ) );
+        bar.repeat( " ", Math.max( 0, empty ) );
+
+        return bar.toString();
+    }
+
+    // Calculates and returns the player's attack damage based on equipped weapon
+    public int getDamage() {
+        int damage;
+        if ( getEquipped( EquipmentSlot.WEAPON ) == null ) {
+            damage = 0;
+        }
+        else {
+            damage = ( ( Weapon ) getEquipped( EquipmentSlot.WEAPON ) ).getDamage();
+        }
+
+        return damage;
+    }
+
+    // Calculates and returns the player's defense based on equipped armor
+    public int getDefense() {
+        int defense;
+        if ( getEquipped( EquipmentSlot.ARMOR ) == null ) {
+            defense = 0;
+        }
+        else {
+            defense = ( ( Armor ) getEquipped( EquipmentSlot.ARMOR ) ).getDefense();
+        }
+
+        return defense;
     }
 
     // Returns the room the player is currently in
@@ -69,7 +112,7 @@ public class Player extends Entity {
     }
 
     // Moves the player in a given direction if an exit exists
-    public void move( Direction direction ) {
+    public void move( Direction direction, Game game ) {
         Exit exit = currentRoom.getExit( direction );
 
         if ( exit == null ) {
@@ -80,6 +123,8 @@ public class Player extends Entity {
         this.currentRoom = exit.target();
 
         System.out.println( "You moved " + direction + "." );
+
+        EncounterSystem.checkForEncounter( this, game );
     }
 
     // Adds an item to the player's inventory
@@ -87,7 +132,6 @@ public class Player extends Entity {
         inventory.add( item );
         System.out.println( "Picked up: " + item.getName() );
     }
-
 
     // Equips an item if it is equippable, swapping with existing equipment if needed
     public void equip( Item item ) {

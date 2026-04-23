@@ -19,6 +19,11 @@ public class CommandConfig {
         registry.register( "left", new TurnLeftCommandFactory() );
         registry.register( "right", new TurnRightCommandFactory() );
         registry.register( "drop", new DropCommandFactory() );
+        registry.register( "attack", new AttackCommandFactory() );
+        registry.register( "hit", new AttackCommandFactory() );
+        registry.register( "use", new UseCommandFactory() );
+        registry.register( "flee", new FleeCommandFactory() );
+        registry.register( "run", new FleeCommandFactory() );
 
        return new CommandParser( registry );
     }

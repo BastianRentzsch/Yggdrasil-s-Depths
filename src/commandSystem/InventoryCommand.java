@@ -9,4 +9,10 @@ public class InventoryCommand extends Command {
         // Show the player's inventory contents
         game.getPlayer().getInventory().print();
     }
+
+    // Indicates this command is allowed during combat
+    @Override
+    public boolean allowedInCombat() {
+        return true;
+    }
 }

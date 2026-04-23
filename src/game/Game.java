@@ -3,6 +3,7 @@ package game;
 import commandSystem.Command;
 import commandSystem.CommandParser;
 import dungeon.Room;
+import entitySystem.Enemy;
 import entitySystem.Player;
 import utils.ConsoleUtils;
 
@@ -14,6 +15,7 @@ public class Game {
     private List<Room> rooms;
     private final Player player;
     private final CommandParser parser;
+    private Enemy currentEnemy;
 
     public Game( List<Room> rooms, Player player, CommandParser parser ) {
         this.rooms = rooms;
@@ -21,9 +23,24 @@ public class Game {
         this.parser = parser;
     }
 
+    // Returns the current enemy in combat
+    public Enemy getCurrentEnemy() {
+        return currentEnemy;
+    }
+
+    // Sets the current enemy for combat
+    public void setCurrentEnemy( Enemy enemy ) {
+        this.currentEnemy = enemy;
+    }
+
     // Returns the player instance
     public Player getPlayer() {
         return this.player;
+    }
+
+    // Checks whether the player is currently in combat
+    public boolean isInCombat() {
+        return currentEnemy != null && currentEnemy.isAlive();
     }
 
     // Starts the game loop and handles user input
@@ -33,24 +50,40 @@ public class Game {
         System.out.println( "game.Game started. Type commands (e.g., 'go north')." );
 
         while ( true ) {
-            // Show player direction and current view
-            System.out.println("Direction: " + this.player.getFacing() );
-            this.player.look();
+            // Display player status including direction, health, attack, and defense
+            System.out.println("Direction: " + this.player.getFacing() + " Health: |" + this.player.getHealth() + "| Attack: "
+                    + this.player.getDamage() + " Defense: "
+                    + this.player.getDefense() );
 
-            // Read user input
+            // Show enemy art if in combat, otherwise show room view
+            if ( isInCombat() ) {
+                this.currentEnemy.showArt();
+            }
+            else {
+                this.player.look();
+            }
+
+            // Prompt the user for input
             System.out.print( "> " );
             String input = scanner.nextLine();
 
-            // Parse and execute command
+            // Parse the input into a command
             Command command = parser.parse( input, this );
-            if ( command != null ) {
+
+            // Prevent non-combat commands during combat
+            if ( isInCombat() && !command.allowedInCombat() ) {
+                System.out.println( "You are in combat! Use 'attack', 'use', or 'flee'." );
+            }
+            // Execute the command if it is valid
+            else if ( command != null ) {
                 command.execute( this );
             }
 
-            // Pause before clearing screen
+            // Pause to allow the player to read output
             System.out.println("\nPress ENTER to continue...");
             scanner.nextLine();
 
+            // Clear the console for the next frame
             ConsoleUtils.clearConsole();
         }
     }

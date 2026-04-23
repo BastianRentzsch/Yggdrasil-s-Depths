@@ -17,7 +17,7 @@ public class ItemCodex {
         itemCodex.put( "Iron Armor", new Armor( "Iron Armor", "Plain armor out of iron, better than leather", 3 ) );
 
         // Consumables
-        itemCodex.put( "potion", new Consumable( "Potion", "Heals 10 HP", 10 ) );
-        itemCodex.put( "hi-potion", new Consumable( "hi-potion", "Heals 20 HP", 20 ) );
+        itemCodex.put( "Potion", new Consumable( "Potion", "Heals 10 HP", 10 ) );
+        itemCodex.put( "Hi-potion", new Consumable( "Hi-potion", "Heals 20 HP", 20 ) );
     }
 }

@@ -32,6 +32,10 @@ public class Room {
 
     // Adds an item to the room
     public void addItem( Item item ) {
+        if ( item == null ) {
+            throw new IllegalArgumentException( "Cannot add null item to room." );
+        }
+
         items.add( item );
     }
 

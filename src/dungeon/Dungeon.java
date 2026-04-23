@@ -330,12 +330,12 @@ public class Dungeon {
 
     // Places items into specific rooms using the ItemCodex registry
     static private void addItems( List<Room> rooms ) {
-        rooms.get( 15 ).addItem( itemCodex.get( "potion" ) );
+        rooms.get( 15 ).addItem( itemCodex.get( "Potion" ) );
         rooms.get( 15 ).addItem( itemCodex.get( "Old sword" ) );
-        rooms.get( 15 ).addItem( itemCodex.get( "Leather Armor ") );
+        rooms.get( 15 ).addItem( itemCodex.get( "Leather Armor") );
 
-        rooms.get( 16 ).addItem( itemCodex.get( "hi-potion" ) );
+        rooms.get( 16 ).addItem( itemCodex.get( "Hi-potion" ) );
         rooms.get( 16 ).addItem( itemCodex.get( "Sword" ) );
-        rooms.get( 16 ).addItem( itemCodex.get( "Iron Armor ") );
+        rooms.get( 16 ).addItem( itemCodex.get( "Iron Armor") );
     }
 }
