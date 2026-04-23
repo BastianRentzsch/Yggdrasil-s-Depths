@@ -6,6 +6,7 @@ import dungeon.Room;
 import entitySystem.Enemy;
 import entitySystem.Player;
 import utils.ConsoleUtils;
+import utils.MusicPlayer;
 
 import java.util.List;
 import java.util.Scanner;
@@ -17,6 +18,7 @@ public class Game {
     private final CommandParser parser;
     private Enemy currentEnemy;
     private boolean running = true;
+    private final MusicPlayer musicPlayer = new MusicPlayer();
 
     public Game( List<Room> rooms, Player player, CommandParser parser ) {
         this.rooms = rooms;
@@ -32,6 +34,12 @@ public class Game {
     // Sets the current enemy for combat
     public void setCurrentEnemy( Enemy enemy ) {
         this.currentEnemy = enemy;
+
+        if (enemy != null) {
+            musicPlayer.playLoop( "music/combat.wav" );
+        } else {
+            musicPlayer.playLoop( "music/exploration.wav" );
+        }
     }
 
     // Returns the player instance
@@ -47,6 +55,7 @@ public class Game {
     // Starts the game loop and handles user input
     public void start() {
         Scanner scanner = new Scanner(System.in);
+        musicPlayer.playLoop( "music/exploration.wav" );
 
         System.out.println( "game.Game started. Type commands (e.g., 'go north')." );
 
