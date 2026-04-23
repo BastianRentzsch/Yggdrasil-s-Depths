@@ -16,11 +16,11 @@ public class DropCommand extends Command {
         // Get the item from the player's inventory
         Item item = game.getPlayer()
                 .getInventory()
-                .getItem( itemName );
+                .getItem( this.itemName );
 
         // If the item is not found, inform the player
         if ( item == null ) {
-            System.out.println( "You do not have " + itemName + " so it cannot be dropped." );
+            System.out.println( "You do not have " + this.itemName + " so it cannot be dropped." );
             return;
         }
 

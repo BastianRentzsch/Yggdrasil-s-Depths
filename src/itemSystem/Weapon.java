@@ -1,7 +1,5 @@
 package itemSystem;
 
-import entitySystem.Entity;
-
 // Represents a weapon item that can deal damage and be equipped
 public class Weapon extends Item implements Equippable {
     private final int damage;
@@ -20,12 +18,5 @@ public class Weapon extends Item implements Equippable {
     @Override
     public EquipmentSlot getSlot() {
         return EquipmentSlot.WEAPON;
-    }
-
-    // Uses the weapon to deal damage to a target entity
-    @Override
-    public void use( Entity target ) {
-        target.takeDamage( damage );
-        System.out.println( target + " took " + damage + " damage." );
     }
 }

@@ -14,7 +14,7 @@ import java.util.Map;
 // Represents the player character, including movement, inventory, and equipment
 public class Player extends Entity {
     private Room currentRoom;
-    private final Map<EquipmentSlot, Item> equipment = new EnumMap<>(EquipmentSlot.class);
+    private final Map<EquipmentSlot, Item> equipment = new EnumMap<>( EquipmentSlot.class );
     private Direction facing = Direction.NORTH;
 
     public Player( String name, int health, Room startRoom ) {
@@ -25,7 +25,7 @@ public class Player extends Entity {
     // Returns a visual health bar representing the player's current health
     public String getHealth() {
         int barLength = 20;
-        double healthPercent = ( double ) health / maxHealth;
+        double healthPercent = ( double ) this.health / this.maxHealth;
 
         int filled = ( int ) ( barLength * healthPercent );
         int empty = barLength - filled;
@@ -76,32 +76,32 @@ public class Player extends Entity {
 
     // Returns the direction the player is currently facing
     public Direction getFacing() {
-        return facing;
+        return this.facing;
     }
 
     // Turns the player 90 degrees to the left
     public void turnLeft() {
-        switch ( facing ) {
-            case NORTH -> facing = Direction.WEST;
-            case WEST -> facing = Direction.SOUTH;
-            case SOUTH -> facing = Direction.EAST;
-            case EAST -> facing = Direction.NORTH;
+        switch ( this.facing ) {
+            case NORTH -> this.facing = Direction.WEST;
+            case WEST -> this.facing = Direction.SOUTH;
+            case SOUTH -> this.facing = Direction.EAST;
+            case EAST -> this.facing = Direction.NORTH;
         }
     }
 
     // Turns the player 90 degrees to the right
     public void turnRight() {
-        switch ( facing ) {
-            case NORTH -> facing = Direction.EAST;
-            case EAST -> facing = Direction.SOUTH;
-            case SOUTH -> facing = Direction.WEST;
-            case WEST -> facing = Direction.NORTH;
+        switch ( this.facing ) {
+            case NORTH -> this.facing = Direction.EAST;
+            case EAST -> this.facing = Direction.SOUTH;
+            case SOUTH -> this.facing = Direction.WEST;
+            case WEST -> this.facing = Direction.NORTH;
         }
     }
 
     // Shows what is in front of the player based on the current facing direction
     public void look() {
-        Side side = currentRoom.getSide( facing );
+        Side side = this.currentRoom.getSide( this.facing );
 
         if (side == null) {
             System.out.println( "You see nothing special." );
@@ -113,7 +113,7 @@ public class Player extends Entity {
 
     // Moves the player in a given direction if an exit exists
     public void move( Direction direction, Game game ) {
-        Exit exit = currentRoom.getExit( direction );
+        Exit exit = this.currentRoom.getExit( direction );
 
         if ( exit == null ) {
             System.out.println( "The way is blocked." );
@@ -124,12 +124,12 @@ public class Player extends Entity {
 
         System.out.println( "You moved " + direction + "." );
 
-        EncounterSystem.checkForEncounter( this, game );
+        EncounterSystem.checkForEncounter( game );
     }
 
     // Adds an item to the player's inventory
     public void pickUp( Item item ) {
-        inventory.add( item );
+        this.inventory.add( item );
         System.out.println( "Picked up: " + item.getName() );
     }
 
@@ -142,22 +142,22 @@ public class Player extends Entity {
 
         EquipmentSlot slot = equippable.getSlot();
 
-        Item previous = equipment.put( slot, item );
+        Item previous = this.equipment.put( slot, item );
 
         if ( previous != null ) {
             System.out.println( "Unequipped " + previous.getName() );
-            inventory.add( previous );
+            this.inventory.add( previous );
         }
 
-        inventory.remove( item );
+        this.inventory.remove( item );
 
         System.out.println( "Equipped " + item.getName() );
     }
 
     // Drops an item from inventory into the current room
     public void drop( Item item ) {
-        inventory.remove( item );
-        currentRoom.addItem( item );
+        this.inventory.remove( item );
+        this.currentRoom.addItem( item );
         System.out.println( "Dropped: " + item.getName() );
     }
 }

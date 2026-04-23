@@ -27,12 +27,12 @@ public class CommandParser {
         List<String> args = Arrays.asList( parts ).subList( 1, parts.length );
 
         // Check if the command exist
-        if ( !registry.supports( verb ) ) {
+        if ( !this.registry.supports( verb ) ) {
             System.out.println( "Unknown command: " + verb );
             return null;
         }
 
         // Create and return the corresponding Command using its factory
-        return registry.get( verb ).create( new ParsedCommand( verb, args ), game );
+        return this.registry.get( verb ).create( new ParsedCommand( verb, args ), game );
     }
 }

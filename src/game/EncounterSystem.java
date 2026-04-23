@@ -2,7 +2,6 @@ package game;
 
 import entitySystem.Enemy;
 import static entitySystem.EnemyCodex.enemyCodex;
-import entitySystem.Player;
 
 import java.util.List;
 import java.util.Random;
@@ -14,13 +13,13 @@ public class EncounterSystem {
     private static final double encounterChance = 0.3;
 
     // Checks if a random encounter should occur after player movement
-    public static void checkForEncounter( Player player, Game game ) {
+    public static void checkForEncounter( Game game ) {
         // Roll chance to determine if an encounter happens
         if ( random.nextDouble() > encounterChance ) return;
 
         // Select a random enemy and start combat
         Enemy enemy = getRandomEnemy();
-        startCombat( player, game, enemy );
+        startCombat( game, enemy );
     }
 
     // Selects and returns a random enemy from the codex
@@ -34,7 +33,7 @@ public class EncounterSystem {
     }
 
     // Initializes combat with the selected enemy
-    private static void startCombat( Player player, Game game, Enemy enemy ) {
+    private static void startCombat( Game game, Enemy enemy ) {
         // Inform the player about the encounter
         System.out.println( "A wild " + enemy.getName() + " appears!" );
 

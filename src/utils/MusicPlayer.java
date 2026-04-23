@@ -15,7 +15,7 @@ public class MusicPlayer {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream( new File( filePath ) );
             clip = AudioSystem.getClip();
             clip.open( audioStream );
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            clip.loop( Clip.LOOP_CONTINUOUSLY );
         } catch ( UnsupportedAudioFileException | IOException | LineUnavailableException e ) {
             e.printStackTrace();
         }

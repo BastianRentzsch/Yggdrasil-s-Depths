@@ -19,7 +19,7 @@ public class EquipCommand extends Command {
         Item item = player.getInventory()
                 .getItems()
                 .stream()
-                .filter( i -> i.getName().equalsIgnoreCase( itemName ) )
+                .filter( i -> i.getName().equalsIgnoreCase( this.itemName ) )
                 .findFirst()
                 .orElse( null );
 

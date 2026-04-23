@@ -24,7 +24,7 @@ public class Enemy extends Entity {
         int barLength = 20;
 
         // Calculate current health percentage
-        double healthPercent = ( double ) health / maxHealth;
+        double healthPercent = ( double ) this.health / this.maxHealth;
 
         // Determine filled and empty portions of the health bar
         int filled = ( int ) ( barLength * healthPercent );
@@ -36,7 +36,7 @@ public class Enemy extends Entity {
         bar.repeat( " ", Math.max( 0, empty ) );
 
         // Replace placeholder in ASCII art with the generated health bar
-        String result = art.replace( "%hhhhhhhhhhhhhhhhhhh", bar.toString() );
+        String result = this.art.replace( "%hhhhhhhhhhhhhhhhhhh", bar.toString() );
 
         // Print the updated ASCII art
         System.out.println( result );
@@ -50,10 +50,10 @@ public class Enemy extends Entity {
 
         // Calculate damage based on armor presence and defense value
         if ( armor == null ) {
-            damage = attackPower;
+            damage = this.attackPower;
         }
-        else if ( armor.getDefense() < attackPower ) {
-           damage = attackPower - armor.getDefense();
+        else if ( armor.getDefense() < this.attackPower ) {
+           damage = this.attackPower - armor.getDefense();
         }
         else {
             damage = 0;

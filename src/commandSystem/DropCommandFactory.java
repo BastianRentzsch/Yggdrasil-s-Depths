@@ -4,7 +4,7 @@ import game.Game;
 
 // Creates DropCommand objects from parsed input
 public class DropCommandFactory implements CommandFactory {
-    public Command create(ParsedCommand input, Game game ) {
+    public Command create( ParsedCommand input, Game game ) {
         // Check if the player provided an item name
         if ( input.args().isEmpty() ) {
             System.out.println( "Drop what?" );

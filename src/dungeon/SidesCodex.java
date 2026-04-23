@@ -38,7 +38,7 @@ public class SidesCodex {
         ) );
 
         //1.e
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                         |                |
 |                |    \\                                       |                |
@@ -64,7 +64,7 @@ public class SidesCodex {
         ) );
 
         // 1.s, 30.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -90,7 +90,7 @@ public class SidesCodex {
         ) );
 
         // 1.w, 4.n, 5.s, 6.n, 22.n, 23.e, 27.n, 29.w, 30.e, 31.s, 34.e, 35.s
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +------------------------------------------------------------------------------+
 |                                                           /                  |
 |                                                          /                   |
@@ -116,7 +116,7 @@ public class SidesCodex {
         ) );
 
         // 2.n, 3.n, 7.w, 10.n, 11.n, 11.s, 12.e, 13.w, 18.e, 19.w, 24.e, 28.e, 32.s, 33.s
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +------------------------------------------------------------------------------+
 |                                                                              |
 |                                                                              |
@@ -142,7 +142,7 @@ public class SidesCodex {
         ) );
 
         // 2.e
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -168,7 +168,7 @@ public class SidesCodex {
         ) );
 
         // 2.s, 3.e, 6.w, 17.s, 19.s, 26.e, 32.w, 35.e
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -194,7 +194,7 @@ public class SidesCodex {
         ) );
 
         // 2.w, 12.n, 28.n 29.e, 29.s, 30.w, 33.e
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |                                       /    |                |
 |                |                                      /     |                |
@@ -220,7 +220,7 @@ public class SidesCodex {
         ) );
 
         // 4.w, 24.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -246,7 +246,7 @@ public class SidesCodex {
         ) );
 
         // 4.e, 5.w, 8.s, 23.s, 25.s, 27.e, 31.w, 36.e
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +------------------------------------------------------------------------------+
 |                  \\                                        /                  |
 |                    \\                                     /                   |
@@ -272,7 +272,7 @@ public class SidesCodex {
         ) );
 
         // 5.n, 6.e, 9.n, 17.e, 22.e
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +------------------------------------------------------------------------------+
 |                   \\                                                          |
 |                     \\                                                        |
@@ -298,7 +298,7 @@ public class SidesCodex {
         ) );
 
         // 5.e, 7.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                         |                |
 |                |    \\                                       |                |
@@ -324,7 +324,7 @@ public class SidesCodex {
         ) );
 
         // 6.s, 25.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                         |                |
 |                |    \\                                       |                |
@@ -350,7 +350,7 @@ public class SidesCodex {
         ) );
 
         // 7.s
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -376,7 +376,7 @@ public class SidesCodex {
         ) );
 
         // 8.n, 11.e, 14.s, 16.n, 20.w, 26.s
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |                                            |                |
 |                |                                            |                |
@@ -402,7 +402,7 @@ public class SidesCodex {
         ) );
 
         // 8.e, 9.w, 14.w, 15.e, 16.s, 17.n, 25.e, 26.w, 36.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +------------------------------------------------------------------------------+
 |                                                           /                  |
 |                                                          /                   |
@@ -428,7 +428,7 @@ public class SidesCodex {
         ) );
 
         // 8.w, 14.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +------------------------------------------------------------------------------+
 |                  \\                                                           |
 |                    \\                                                         |
@@ -454,7 +454,7 @@ public class SidesCodex {
         ) );
 
         // 9.e
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                         |                |
 |                |    \\                                       |                |
@@ -480,7 +480,7 @@ public class SidesCodex {
         ) );
 
         // 15.n, 16.e, 21.e, 28.s, 32.n, 36.w
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |    \\                                       |                |
 |                |     \\                                      |                |
@@ -506,7 +506,7 @@ public class SidesCodex {
         ) );
 
         // 10.e
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -532,7 +532,7 @@ public class SidesCodex {
         ) );
 
         // 10.s, 10.w, 14.e, 15.w, 23.n, 27.w
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |                                       /    |                |
 |                |                                      /     |                |
@@ -558,7 +558,7 @@ public class SidesCodex {
         ) );
 
         // 11.w
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |                                         /  |                |
 |                |                                       /    |                |
@@ -584,7 +584,7 @@ public class SidesCodex {
         ) );
 
         // 12.s
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -610,7 +610,7 @@ public class SidesCodex {
         ) );
 
         // 12.w
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -636,7 +636,7 @@ public class SidesCodex {
         ) );
 
         // 13.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -662,7 +662,7 @@ public class SidesCodex {
         ) );
 
         // 13.s
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |                                         /  |                |
 |                |                                       /    |                |
@@ -688,7 +688,7 @@ public class SidesCodex {
         ) );
 
         // 15.s, 16.w
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +------------------------------------------------------------------------------+
 |                  \\                                                           |
 |                   \\                                                          |
@@ -714,7 +714,7 @@ public class SidesCodex {
         ) );
 
         // 17.w, 20.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                         |                |
 |                |    \\                                       |                |
@@ -740,7 +740,7 @@ public class SidesCodex {
         ) );
 
         // 3.w, 18.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |                                         /  |                |
 |                |                                       /    |                |
@@ -766,7 +766,7 @@ public class SidesCodex {
         ) );
 
         // 18.s
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -792,7 +792,7 @@ public class SidesCodex {
         ) );
 
         // 19.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -818,7 +818,7 @@ public class SidesCodex {
         ) );
 
         // 19.e
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |                                         /  |                |
 |                |                                       /    |                |
@@ -844,7 +844,7 @@ public class SidesCodex {
         ) );
 
         // 20.e, 22.s
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -870,7 +870,7 @@ public class SidesCodex {
         ) );
 
         // 21.w
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                         |                |
 |                |    \\                                       |                |
@@ -896,7 +896,7 @@ public class SidesCodex {
         ) );
 
         // 22.w
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -922,7 +922,7 @@ public class SidesCodex {
         ) );
 
         // 23.w, 27.s, 29.n, 30.s, 31.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +------------------------------------------------------------------------------+
 |                   \\                                                          |
 |                     \\                                                        |
@@ -948,7 +948,7 @@ public class SidesCodex {
         ) );
 
         // 7.e, 21.n, 21.s, 24.w
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +------------------------------------------------------------------------------+
 |                                                                              |
 |                                                                              |
@@ -974,7 +974,7 @@ public class SidesCodex {
         ) );
 
         // 28.w, 33.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +------------------------------------------------------------------------------+
 |                                                                              |
 |                                                                              |
@@ -1000,7 +1000,7 @@ public class SidesCodex {
         ) );
 
         // 31.e
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |                                         /  |                |
 |                |                                       /    |                |
@@ -1026,7 +1026,7 @@ public class SidesCodex {
         ) );
 
         // 32.e, 34.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -1052,7 +1052,7 @@ public class SidesCodex {
         ) );
 
         // 33.w
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                         |                |
 |                |    \\                                       |                |
@@ -1078,7 +1078,7 @@ public class SidesCodex {
         ) );
 
         // 34.w
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |  \\                                      /  |                |
 |                |    \\                                  /    |                |
@@ -1104,7 +1104,7 @@ public class SidesCodex {
         ) );
 
         // 9.s, 24.s, 35.n
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +----------------+--------------------------------------------+----------------+
 |                |    \\                                       |                |
 |                |     \\                                      |                |
@@ -1130,7 +1130,7 @@ public class SidesCodex {
         ) );
 
         // 3.s, 13.e, 18.w, 20.s
-        sidesCodex.add( new Side("""
+        sidesCodex.add( new Side( """
 +------------------------------------------------------------------------------+
 |                                                                              |
 |                                                                              |

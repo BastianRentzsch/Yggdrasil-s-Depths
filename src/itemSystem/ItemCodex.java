@@ -17,11 +17,14 @@ public class ItemCodex {
         itemCodex.put( "Iron Armor", new Armor( "Iron Armor", "Plain armor out of iron, better than leather", 3 ) );
 
         // Consumables
-        itemCodex.put( "Potion", new Consumable( "Potion", "Heals 10 HP", 10 ) );
-        itemCodex.put( "Hi-potion", new Consumable( "Hi-potion", "Heals 20 HP", 20 ) );
+        itemCodex.put( "Potion", new Consumable( "Potion", "Heals 10 HP", new HealEffect( 10 ) ) );
+        itemCodex.put( "Hi-potion", new Consumable( "Hi-potion", "Heals 20 HP", new HealEffect( 20 ) ) );
 
-        itemCodex.put( "Potato seed", new Consumable( "Potato seed", "A potato seed", 0 ) );
-        itemCodex.put( "Tomato seed", new Consumable( "Tomato seed", "A tomato seed", 0 ) );
-        itemCodex.put( "Lightbulb", new Consumable( "Lightbulb", "A lightbulb", 0 ) );
+        itemCodex.put( "Volt Jar", new Consumable( "Volt Jar", "A Jar of bottled lightning", new DamageEffect( 15, "lightning" ) ) );
+
+        // Items
+        itemCodex.put( "Potato seed", new Item( "Potato seed", "A potato seed" ) );
+        itemCodex.put( "Tomato seed", new Item( "Tomato seed", "A tomato seed" ) );
+        itemCodex.put( "Lightbulb", new Item( "Lightbulb", "A lightbulb" ) );
     }
 }

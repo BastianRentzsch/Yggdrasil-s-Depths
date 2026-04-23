@@ -4,17 +4,15 @@ import entitySystem.Entity;
 
 // Represents a consumable item that can be used to heal an entity
 public class Consumable extends Item {
-    private final int healAmount;
+    private final Effect effect;
 
-    public Consumable( String name, String description, int healAmount ) {
+    public Consumable( String name, String description, Effect effect ) {
         super( name, description );
-        this.healAmount = healAmount;
+        this.effect = effect;
     }
 
     // Uses the item to heal the target entity
-    @Override
     public void use( Entity target ) {
-        target.heal( healAmount );
-        System.out.println( "Healed " + healAmount );
+        this.effect.apply( target );
     }
 }

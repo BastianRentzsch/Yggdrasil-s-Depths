@@ -20,7 +20,7 @@ public class UseCommand extends Command {
         Player player = game.getPlayer();
 
         // Retrieve the item from the player's inventory
-        Item item = player.getInventory().getItem( itemName );
+        Item item = player.getInventory().getItem( this.itemName );
 
         // Check if the item exists in the inventory
         if ( item == null ) {
@@ -44,7 +44,7 @@ public class UseCommand extends Command {
         System.out.println( "You used " + item.getName() );
 
         // Allow enemy to act if the player is in combat
-        if (game.isInCombat()) {
+        if ( game.isInCombat() ) {
             // Get the current enemy
             Enemy enemy = game.getCurrentEnemy();
 

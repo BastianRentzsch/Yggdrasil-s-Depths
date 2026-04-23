@@ -28,14 +28,14 @@ public class Game {
 
     // Returns the current enemy in combat
     public Enemy getCurrentEnemy() {
-        return currentEnemy;
+        return this.currentEnemy;
     }
 
     // Sets the current enemy for combat
     public void setCurrentEnemy( Enemy enemy ) {
         this.currentEnemy = enemy;
 
-        if (enemy != null) {
+        if  ( enemy != null ) {
             musicPlayer.playLoop( "music/combat.wav" );
         } else {
             musicPlayer.playLoop( "music/exploration.wav" );
@@ -49,19 +49,19 @@ public class Game {
 
     // Checks whether the player is currently in combat
     public boolean isInCombat() {
-        return currentEnemy != null && currentEnemy.isAlive();
+        return this.currentEnemy != null && this.currentEnemy.isAlive();
     }
 
     // Starts the game loop and handles user input
     public void start() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner( System.in );
         musicPlayer.playLoop( "music/exploration.wav" );
 
-        System.out.println( "game.Game started. Type commands (e.g., 'go north')." );
+        System.out.println( "Game started. Type commands (e.g., 'go north')." );
 
         while ( isRunning() ) {
             // Display player status including direction, health, attack, and defense
-            System.out.println("Direction: " + this.player.getFacing() + " Health: |" + this.player.getHealth() + "| Attack: "
+            System.out.println( "Direction: " + this.player.getFacing() + " Health: |" + this.player.getHealth() + "| Attack: "
                     + this.player.getDamage() + " Defense: "
                     + this.player.getDefense() );
 
@@ -90,7 +90,7 @@ public class Game {
             }
 
             // Pause to allow the player to read output
-            System.out.println("\nPress ENTER to continue...");
+            System.out.println( "\nPress ENTER to continue..." );
             scanner.nextLine();
 
             // Clear the console for the next frame
@@ -100,11 +100,11 @@ public class Game {
 
     // Stops the game
     public void stop() {
-        running = false;
+        this.running = false;
     }
 
     // Returns the state of the game (running or stopped)
     public boolean isRunning() {
-        return running;
+        return this.running;
     }
 }

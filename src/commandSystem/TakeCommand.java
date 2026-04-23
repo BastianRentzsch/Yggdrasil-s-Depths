@@ -16,7 +16,7 @@ public class TakeCommand extends Command {
         // Try to take the item from the current room
         Item item = game.getPlayer()
                 .getCurrentRoom()
-                .takeItem( itemName );
+                .takeItem( this.itemName );
 
         // If the item is not found, show a message
         if ( item == null ) {

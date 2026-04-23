@@ -4,10 +4,10 @@ import itemSystem.Inventory;
 
 // Base class for all entities in the game (e.g. player, enemies)
 public abstract class Entity {
-    protected String name;
+    protected final String name;
     protected int health;
     protected int maxHealth;
-    protected Inventory inventory = new Inventory();
+    protected final Inventory inventory = new Inventory();
 
     public Entity( String name, int health ) {
         this.name = name;
@@ -22,31 +22,35 @@ public abstract class Entity {
 
     // Reduces health when taking damage (cannot go below 0)
     public void takeDamage( int amount ) {
-        if (health - amount < 0) {
-            health = 0;
+        if ( this.health - amount < 0 ) {
+            this.health = 0;
         }
         else {
-            health -= amount;
+            this.health -= amount;
         }
     }
 
     // Heals the entity (cannot exceed maxHealth)
     public void heal( int amount ) {
-        if ( health + amount > maxHealth ) {
-            health = maxHealth;
+        if ( this.health + amount > this.maxHealth ) {
+            this.health = this.maxHealth;
         }
         else {
-            health += amount;
+            this.health += amount;
         }
+    }
+
+    public void revive( double percentage ) {
+        this.health = ( int ) ( ( double ) this.maxHealth * percentage );
     }
 
     // Checks if the entity is still alive
     public boolean isAlive() {
-        return health > 0;
+        return this.health > 0;
     }
 
     // Returns the entity's inventory
     public Inventory getInventory() {
-        return inventory;
+        return this.inventory;
     }
 }
