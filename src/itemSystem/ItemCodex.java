@@ -19,5 +19,9 @@ public class ItemCodex {
         // Consumables
         itemCodex.put( "Potion", new Consumable( "Potion", "Heals 10 HP", 10 ) );
         itemCodex.put( "Hi-potion", new Consumable( "Hi-potion", "Heals 20 HP", 20 ) );
+
+        itemCodex.put( "Potato seed", new Consumable( "Potato seed", "A potato seed", 0 ) );
+        itemCodex.put( "Tomato seed", new Consumable( "Tomato seed", "A tomato seed", 0 ) );
+        itemCodex.put( "Lightbulb", new Consumable( "Lightbulb", "A lightbulb", 0 ) );
     }
 }
