@@ -16,6 +16,7 @@ public class Game {
     private final Player player;
     private final CommandParser parser;
     private Enemy currentEnemy;
+    private boolean running = true;
 
     public Game( List<Room> rooms, Player player, CommandParser parser ) {
         this.rooms = rooms;
@@ -49,7 +50,7 @@ public class Game {
 
         System.out.println( "game.Game started. Type commands (e.g., 'go north')." );
 
-        while ( true ) {
+        while ( isRunning() ) {
             // Display player status including direction, health, attack, and defense
             System.out.println("Direction: " + this.player.getFacing() + " Health: |" + this.player.getHealth() + "| Attack: "
                     + this.player.getDamage() + " Defense: "
@@ -86,5 +87,15 @@ public class Game {
             // Clear the console for the next frame
             ConsoleUtils.clearConsole();
         }
+    }
+
+    // Stops the game
+    public void stop() {
+        running = false;
+    }
+
+    // Returns the state of the game (running or stopped)
+    public boolean isRunning() {
+        return running;
     }
 }

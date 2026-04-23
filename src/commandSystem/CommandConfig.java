@@ -24,6 +24,10 @@ public class CommandConfig {
         registry.register( "use", new UseCommandFactory() );
         registry.register( "flee", new FleeCommandFactory() );
         registry.register( "run", new FleeCommandFactory() );
+        registry.register( "exit", new ExitCommandFactory() );
+        registry.register( "quit", new ExitCommandFactory() );
+        registry.register( "help", new HelpCommandFactory() );
+        registry.register( "?", new HelpCommandFactory() );
 
        return new CommandParser( registry );
     }
