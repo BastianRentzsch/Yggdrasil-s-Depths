@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Bastian Rentzsch
+
 package itemSystem;
 
 // Represents a weapon item that can deal damage and be equipped

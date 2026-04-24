@@ -1,0 +1,416 @@
+@startuml src
+'https://plantuml.com/class-diagram
+
+left to right direction
+skinparam classAttributeIconSize 0
+skinparam groupInheritance 2
+skinparam linetype polyline
+
+package commandSystem {
+    abstract Command {
+        {abstract} +execute(game : Game) : void
+        +allowedInCombat() : boolean
+    }
+    class ParsedCommand {
+        -verb : String
+        -args : List<String>
+        +ParsedCommand(verb : String, args : List<String>)
+        +getVerb() : String
+        +getArgs() : List<String>
+    }
+    class CommandConfig {
+       {static} +createParser() : CommandParser
+    }
+    interface CommandFactory {
+        create(input : ParsedCommand, game : Game) : Command
+    }
+    class CommandParser {
+        -registry : CommandRegistry
+        +CommandParser(registry : CommandRegistry)
+        +parse(input : String, game : Game) : Command
+    }
+    class CommandRegistry {
+        -factories : Map<String, CommandFactory>
+        +register(name : String, factory : CommandFactory) : void
+        +get(name : String) : CommandFactory
+        +supports(name : String) : boolean
+    }
+    'Commands
+    class AttackCommand {
+            +execute(game : Game) : void
+            +allowedInCombat() : boolean
+        }
+    class DropCommand {
+        itemName : String
+        +DropCommand(itemName : String)
+        +execute(game : Game) : void
+    }
+    class EquipCommand {
+        -itemName : String
+        +EquipCommand(itemName : String)
+        +execute(game : Game) : void
+    }
+    class ExitCommand {
+        +execute(game : Game) : void
+        +allowedInCombat() : boolean
+    }
+    class FleeCommand {
+        {static} +random : Random
+        +execute(game : Game) : void
+        +allowedInCombat() : boolean
+    }
+    class HelpCommand {
+        +execute(game : Game) : void
+        +allowedInCombat() : boolean
+    }
+    class InventoryCommand {
+        +execute(game : Game) : void
+        +allowedInCombat() : boolean
+    }
+    class LookCommand {
+        +execute(game : Game) : void
+    }
+    class MoveCommand {
+        -direction : Direction
+        +MoveCommand(direction : Direction)
+        +execute(game : Game) : void
+    }
+    class TakeCommand {
+        -itemName : String
+        +TakeCommand(itemName : String)
+        +execute(game : Game) : void
+    }
+    class TurnLeftCommand {
+        +execute(game : Game) : void
+    }
+    class TurnRightCommand {
+        +execute(game : Game) : void
+    }
+    class UseCommand  {
+        -itemName : String
+        +UseCommand(itemName : String)
+        +execute(game : Game) : void
+        +allowedInCombat() : boolean
+    }
+    'CommandFactories
+    class AttackCommandFactory {
+        create(input : ParsedCommand, game : Game) : Command
+    }
+    class DropCommandFactory {
+        +create(input : ParsedCommand, game : Game) : Command
+    }
+    class EquipCommandFactory {
+        +create(input : ParsedCommand, game : Game) : Command
+    }
+    class ExitCommandFactory {
+        +create(input : ParsedCommand, game : Game) : Command
+    }
+    class FleeCommandFactory {
+        +create(input : ParsedCommand, game : Game) : Command
+    }
+    class HelpCommandFactory {
+        +create(input : ParsedCommand, game : Game) : Command
+    }
+    class InventoryCommandFactory {
+        +create(input : ParsedCommand, game : Game) : Command
+    }
+    class LookCommandFactory {
+        +create(input : ParsedCommand, game : Game) : Command
+    }
+    class MoveCommandFactory {
+        +create(input : ParsedCommand, game : Game) : Command
+    }
+    class TakeCommandFactory {
+        +create(input : ParsedCommand, game : Game) : Command
+    }
+    class TurnLeftCommandFactory {
+        +create(input : ParsedCommand, game : Game) : Command
+    }
+    class TurnRightCommandFactory {
+        +create(input : ParsedCommand, game : Game) : Command
+    }
+    class UseCommandFactory {
+        +create(input : ParsedCommand, game : Game) : Command
+    }
+}
+
+package dungeon {
+    enum Direction {
+        NORTH,
+        EAST,
+        SOUTH,
+        WEST
+        +opposite() : Direction
+    }
+    class Dungeon {
+        {static} +createDungeon() : List<Room>
+        {static} -addExits(rooms : List<Room>) : void
+        {static} -addSides(rooms : List<Room>) : void
+        {static} -addItems(rooms : List<Room>) : void
+    }
+    record Exit {
+      direction : Direction
+      target : Room
+    }
+    class Room {
+        -exits : Map<Direction, Exit>
+        -items : List<Item>
+        -sides : Map<Direction, Side>
+        +addExit(exit : Exit) : void
+        +getExit(direction : Direction) : Exit
+        +addSide(direction : Direction, side : Side) : void
+        +getSide(direction : Direction) : Side
+        +addItem(item : Item) : void
+        +printItems() : void
+        +takeItem(name : String) : Item
+    }
+    record Side {
+        art : String
+    }
+    class SidesCodex {
+        {static} +sidesCodex : List<Side>
+    }
+}
+
+package entitySystem {
+    abstract Entity {
+        #name : String
+        #health : int
+        #maxHealth : int
+        #inventory : Inventory
+        +Entity(name : String, health : int)
+        +getName() : String
+        +takeDamage(amount : int) : void
+        +heal(amount : int) : void
+        +revive(percentage : double) : void
+        +isAlive() : boolean
+        +getInventory() : Inventory
+    }
+    class Player {
+        -currentRoom : Room
+        -equipment : Map<EquipmentSlot, Item>
+        -facing : Direction
+        +Player(name : String, health : int, startRoom : Room)
+        +getHealth() : String
+        +getDamage() : int
+        +getDefense() : int
+        +getCurrentRoom() : Room
+        +getEquipped(EquipmentSlot slot) : Item
+        +getFacing() : Direction
+        +turnLeft() : void
+        +turnRight() : void
+        +look() : void
+        +move(direction : Direction) :void
+        +pickup(item : Item) : void
+        +equip(item : Item) : void
+        +drop(item : Item) : void
+    }
+    class Enemy {
+        -attackPower : int
+        -loot : List<Item>
+        -art : String
+        +Enemy(name : String, health : int, attackPower : int, loot : List<Item>, art : String)
+        +showArt() : void
+        +attack(player : Player) : void
+        +dropLoot() : List<Item>
+        +copy() : Enemy
+    }
+    class EnemyCodex {
+        {static} +enemyCodex : List<Enemy>
+    }
+}
+
+package game {
+    class EncounterSystem {
+        {static} -random : Random
+        {static} -encounterChance : double
+        {static} +checkForEncounter(game : Game) : void
+        {static} -getRandomEnemy() : Enemy
+        {static} +startCombat(game : Game, enemy : Enemy) : void
+    }
+    class Game {
+        -rooms : List<Room>
+        -player : Player
+        -parser : CommandParser
+        -currentEnemy : Enemy
+        -running : boolean
+        +Game(rooms : List<Room>, player : Player, parser : CommandParser)
+        +getCurrentEnemy() : Enemy
+        +setCurrentEnemy(enemy : Enemy) : void
+        +getPlayer() : Player
+        +isInCombat() : boolean
+        +start() : void
+        +stop() : void
+        +isRunning() : boolean
+    }
+}
+
+package itemSystem {
+    class Item {
+        -name : String
+        -description : String
+        +Item(name :String,description : String)
+        +getName() : String
+        +getDescription() : String
+    }
+    enum EquipmentSlot {
+        WEAPON,
+        ARMOR
+    }
+    interface Equippable {
+        getSlot() : EquipmentSlot
+    }
+    class Weapon {
+         -damage : int
+         +Weapon(name : String, description : String, damage : int)
+         +getDamage() : int
+         +getSlot() : EquipmentSlot
+     }
+    class Armor {
+        -defense : int
+        +Armor(name : String, description : String, defense : int)
+        +getDefense() : int
+        +getSlot() : EquipmentSlot
+    }
+    class Consumable {
+        -effect : Effect
+        +Consumable(name : String, description : String, effect : Effect)
+        +use(target : Entity) : void
+    }
+    class Inventory {
+        -items : List<Item>
+        +add(item : Item) : void
+        +remove(item : Item) : void
+        +getItems() : List<Item>
+        +getItem(itemName : String) : Item
+        +print() : void
+    }
+    class ItemCodex {
+        {static} +itemCodex : Map<String, Item>
+    }
+    'Effects
+    interface Effect {
+        apply(target : Entity) : void
+    }
+    class HealEffect {
+        -amount : int
+        +HealEffect(amount : int)
+        +apply(target : Entity) : void
+    }
+    class ReviveEffect {
+        -percentage : double
+        +ReviveEffect(percentage : double)
+        +apply(target : Entity) : void
+    }
+    class DamageEffect {
+        -damage : int
+        -type : String
+        +DamageEffect(damage : int, type : String)
+        +apply(target : Entity) : void
+    }
+}
+
+package utils {
+    class ConsoleUtils {
+        {static} +clearConsole() : void
+        {static} +fallbackClear() : void
+    }
+    class MusicPlayer {
+        +playLoop(filePath : String) : void
+        +stop() : void
+    }
+}
+
+'Inheritance
+Command <|-left- AttackCommand
+Command <|-left- DropCommand
+Command <|-left- EquipCommand
+Command <|-left- ExitCommand
+Command <|-left- FleeCommand
+Command <|-left- HelpCommand
+Command <|-left- InventoryCommand
+Command <|-left- LookCommand
+Command <|-left- MoveCommand
+Command <|-left- TakeCommand
+Command <|-left- TurnLeftCommand
+Command <|-left- TurnRightCommand
+Command <|-left- UseCommand
+
+Entity <|-- Player
+Entity <|-- Enemy
+
+Item <|-- Weapon
+Item <|-- Armor
+Item <|-- Consumable
+
+'Implementation
+CommandFactory <|.right. AttackCommandFactory
+CommandFactory <|.right. DropCommandFactory
+CommandFactory <|.right. EquipCommandFactory
+CommandFactory <|.right. ExitCommandFactory
+CommandFactory <|.right. FleeCommandFactory
+CommandFactory <|.right. HelpCommandFactory
+CommandFactory <|.right. InventoryCommandFactory
+CommandFactory <|.right. LookCommandFactory
+CommandFactory <|.right. MoveCommandFactory
+CommandFactory <|.right. TakeCommandFactory
+CommandFactory <|.right. TurnLeftCommandFactory
+CommandFactory <|.right. TurnRightCommandFactory
+CommandFactory <|.right. UseCommandFactory
+
+Equippable <|.. Weapon
+Equippable <|.. Armor
+
+Effect <|.. HealEffect
+Effect <|.. ReviveEffect
+Effect <|.. DamageEffect
+
+'Composition
+Dungeon *-- Room
+Room *-- Exit
+Exit *-- Side
+
+Game *-- Room
+Game *-- Player
+Game *-- CommandParser
+
+'Aggregation
+EnemyCodex o-- Enemy
+
+SidesCodex o-- Side
+
+Inventory o-- Item
+ItemCodex o-- Item
+
+Room o-- Item
+
+' Relationships
+AttackCommandFactory --> AttackCommand
+DropCommandFactory --> DropCommand
+EquipCommandFactory --> EquipCommand
+FleeCommandFactory --> FleeCommand
+InventoryCommandFactory --> InventoryCommand
+LookCommandFactory --> LookCommand
+MoveCommandFactory --> MoveCommand
+TakeCommandFactory --> TakeCommand
+TurnLeftCommandFactory --> TurnLeftCommand
+TurnRightCommandFactory --> TurnRightCommand
+UseCommandFactory --> UseCommand
+
+CommandParser --> CommandRegistry
+CommandRegistry --> CommandFactory
+CommandParser --> ParsedCommand
+CommandParser --> Command
+
+Game --> CommandParser
+Game --> Enemy
+Game --> Player
+
+EncounterSystem --> Game
+EncounterSystem --> Player
+EncounterSystem --> Enemy
+
+Inventory --> Item
+Player --> Inventory
+Entity --> Inventory
+@enduml

@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Bastian Rentzsch
+
 package commandSystem;
 
 import entitySystem.Enemy;

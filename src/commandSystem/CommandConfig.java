@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Bastian Rentzsch
+
 package commandSystem;
 
 // Configures and returns a CommandParser with all available commands registered

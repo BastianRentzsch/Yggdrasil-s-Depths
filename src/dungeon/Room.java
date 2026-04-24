@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Bastian Rentzsch
+
 package dungeon;
 
 import itemSystem.Item;

@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Bastian Rentzsch
+
 package game;
 
 import entitySystem.Enemy;

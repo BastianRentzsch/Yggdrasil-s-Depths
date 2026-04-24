@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Bastian Rentzsch
+
 package itemSystem;
 
 // Marks an item as something that can be equipped by the player

@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Bastian Rentzsch
+
 import commandSystem.*;
 import dungeon.Dungeon;
 import dungeon.Room;

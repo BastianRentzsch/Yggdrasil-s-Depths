@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Bastian Rentzsch
+
 package itemSystem;
 
 // Represents an armor item that can be equipped and provides defense

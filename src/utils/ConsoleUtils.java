@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Bastian Rentzsch
+
 package utils;
 
 // Utility class for clearing the console in different environments (Windows, Linux, macOS)

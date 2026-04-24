@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Bastian Rentzsch
+
 package dungeon;
 
 // Represents the four possible movement directions in the dungeon

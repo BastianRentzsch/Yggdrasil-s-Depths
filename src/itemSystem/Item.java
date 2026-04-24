@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Bastian Rentzsch
+
 package itemSystem;
 
 // Base class for all items in the game
