@@ -77,7 +77,7 @@ public class EncounterSystem {
      * @param enemyCodex the available enemy templates
      * @return an array containing the enemies for the encounter
      */
-    public static Enemy[] getEnemies(Enemy[] enemyCodex) {
+    public static Enemy[] getEnemiesForBattle(Enemy[] enemyCodex) {
     	int enemiesCount = (RANDOM.nextInt(3)) + 1;
 		Enemy[] enemiesToFight = new Enemy[enemiesCount];
 		 

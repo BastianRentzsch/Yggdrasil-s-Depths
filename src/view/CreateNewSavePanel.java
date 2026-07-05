@@ -24,6 +24,7 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
 import audio.MusicPlayer;
+import controller.GameController;
 import controller.PlayerController;
 import model.Game;
 import view.gamewindow.GameWindow;
@@ -182,7 +183,7 @@ public class CreateNewSavePanel extends JPanel {
 
 				frame.setGameIsRunning(true);
 				
-				game.player = PlayerController.createNewPlayer(name, gender, game);
+				controller.GameController.setPlayer(game, PlayerController.createNewPlayer(name, gender, game));
 				
 				GameWindow gameWindow = new GameWindow(frame, game);
 				frame.setGameWindow(gameWindow);

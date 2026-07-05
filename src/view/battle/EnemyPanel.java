@@ -4,6 +4,7 @@ package view.battle;
 
 import javax.swing.JPanel;
 
+import controller.EnemyController;
 import model.entity.Enemy;
 import view.utils.HealthBar;
 import view.utils.SpriteImagePanel;
@@ -59,8 +60,7 @@ public class EnemyPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.1, 0.0};
 		this.setLayout(gridBagLayout);
 		
-		SpriteImagePanel spriteImagePanel = new SpriteImagePanel("./res/images/sprites/enemies/"
-				+ enemy.getImagename(), false);
+		SpriteImagePanel spriteImagePanel = new SpriteImagePanel(EnemyController.getImagepath(this.enemy), false);
 		GridBagConstraints gbc_spriteImagePanel = new GridBagConstraints();
 		gbc_spriteImagePanel.fill = GridBagConstraints.BOTH;
 		gbc_spriteImagePanel.insets = new Insets(0, 0, 5, 5);
@@ -68,7 +68,7 @@ public class EnemyPanel extends JPanel {
 		gbc_spriteImagePanel.gridy = 0;
 		this.add(spriteImagePanel, gbc_spriteImagePanel);
 		
-		this.healthBar = new HealthBar(enemy.getMaxHealth(), enemy.getHealth());
+		this.healthBar = new HealthBar(EnemyController.getMaxHealth(this.enemy), EnemyController.getHealth(this.enemy));
 		GridBagConstraints gbc_healthBar = new GridBagConstraints();
 		gbc_healthBar.insets = new Insets(0, 0, 5, 5);
 		gbc_healthBar.fill = GridBagConstraints.BOTH;
@@ -94,11 +94,11 @@ public class EnemyPanel extends JPanel {
 	 * </p>
 	 */
 	public void updateDisplay() {
-		if (this.enemy.getHealth() == 0) {
+		if (EnemyController.getHealth(this.enemy) == 0) {
 			this.setVisible(false);
 		}
 		else {
-			this.healthBar.setHealth(this.enemy.getHealth());
+			this.healthBar.setHealth(EnemyController.getHealth(this.enemy));
 		}
 	}
 

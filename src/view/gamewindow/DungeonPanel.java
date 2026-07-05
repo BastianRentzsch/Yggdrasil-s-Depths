@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import controller.GameController;
+import controller.PlayerController;
 import model.Game;
 import model.entity.Player;
 import java.awt.Color;
@@ -48,10 +50,12 @@ public class DungeonPanel extends JPanel {
      */
 	public DungeonPanel(Game game) {
 		this.setBackground(new Color(41, 37, 36));
-		this.dungeonImage = new DungeonImage(game.dungeon);
+		this.dungeonImage = new DungeonImage(GameController.getDungeon(game));
 
-		this.currentDungeonImage = this.dungeonImage.paintCurrentView(game.player.getX(),
-				game.player.getY(), game.player.getFacing());
+		this.currentDungeonImage = this.dungeonImage.paintCurrentView(
+				PlayerController.getX(GameController.getPlayer(game)),
+				PlayerController.getY(GameController.getPlayer(game)),
+				PlayerController.getFacing(GameController.getPlayer(game)));
 	}
 	
 	/**
@@ -107,8 +111,10 @@ public class DungeonPanel extends JPanel {
      * @param player the player whose position and direction determine the view
      */
 	public void updateView(Player player) {
-		this.currentDungeonImage = this.dungeonImage.paintCurrentView(player.getX(),
-				player.getY(), player.getFacing());
+		this.currentDungeonImage = this.dungeonImage.paintCurrentView(
+				PlayerController.getX(player),
+				PlayerController.getY(player),
+				PlayerController.getFacing(player));
 
 		this.revalidate();
 		this.repaint();

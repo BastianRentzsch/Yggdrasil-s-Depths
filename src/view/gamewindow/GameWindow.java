@@ -15,7 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import audio.MusicPlayer;
+import controller.DungeonController;
 import controller.EncounterSystem;
+import controller.GameController;
+import controller.PlayerController;
 import model.Game;
 import model.dungeon.Direction;
 import view.GameFrame;
@@ -93,8 +96,8 @@ public class GameWindow extends JPanel {
 		topPanel.setLayout(fl_topPanel);
 		this.add(topPanel, BorderLayout.NORTH);
 
-		this.setHealthBar(new HealthBar(this.game.player.getMaxHealth(),
-											this.game.player.getHealth()));
+		this.setHealthBar(new HealthBar(PlayerController.getMaxHealth(GameController.getPlayer(this.game)),
+											PlayerController.getHealth(GameController.getPlayer(this.game))));
 		topPanel.add(this.getHealthBar(), FlowLayout.LEFT);
 
 		this.setDungeonPanel(new DungeonPanel(this.game));
@@ -108,8 +111,8 @@ public class GameWindow extends JPanel {
         InventoryScreen inventoryScreen = new InventoryScreen(this.game);
         this.frame.addCard(inventoryScreen, GameFrame.INVENTORY);
 
-        OptionScreen otionScreen = new OptionScreen(this.frame, this.game);
-        this.frame.addCard(otionScreen, GameFrame.OPTIONS);
+        OptionScreen optionScreen = new OptionScreen(this.frame, this.game);
+        this.frame.addCard(optionScreen, GameFrame.OPTIONS);
 	}
 
 	/**
@@ -240,25 +243,27 @@ public class GameWindow extends JPanel {
 	 * </p>
 	 */
 	private void moveForward() {
-	    if ((this.game.player.getX() > 0
-	    		&& this.game.player.getFacing() == Direction.NORTH)) {
-	    	this.game.player.move(Direction.NORTH);
-	        this.getDungeonPanel().updateView(this.game.player);
+	    if ((PlayerController.getX(GameController.getPlayer(this.game)) > 0
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.NORTH)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.NORTH);
+	        this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
-	    else if ((this.game.player.getX() < this.game.dungeon.rooms.length - 1
-	    		&& this.game.player.getFacing() == Direction.SOUTH)) {
-	    	this.game.player.move(Direction.SOUTH);
-	    	this.getDungeonPanel().updateView(this.game.player);
+	    else if ((PlayerController.getX(GameController.getPlayer(this.game)) < DungeonController.getXLength(
+						GameController.getDungeon(this.game)) - 1
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.SOUTH)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.SOUTH);
+	    	this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
-	    else if ((this.game.player.getY() > 0
-	    		&& this.game.player.getFacing() == Direction.WEST)) {
-	    	this.game.player.move(Direction.WEST);
-	    	this.getDungeonPanel().updateView(this.game.player);
+	    else if ((PlayerController.getY(GameController.getPlayer(this.game)) > 0
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.WEST)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.WEST);
+	    	this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
-	    else if ((this.game.player.getY() < this.game.dungeon.rooms[0].length - 1
-	    		&& this.game.player.getFacing() == Direction.EAST)) {
-	    	this.game.player.move(Direction.EAST);
-	    	this.getDungeonPanel().updateView(this.game.player);
+	    else if ((PlayerController.getY(GameController.getPlayer(this.game)) < DungeonController.getYLength(
+						GameController.getDungeon(this.game)) - 1
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.EAST)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.EAST);
+	    	this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
 	}
 
@@ -271,25 +276,27 @@ public class GameWindow extends JPanel {
 	 * </p>
 	 */
 	private void moveBackward() {
-		if ((this.game.player.getX() > 0
-	    		&& this.game.player.getFacing() == Direction.SOUTH)) {
-	    	this.game.player.move(Direction.NORTH);
-	        this.getDungeonPanel().updateView(this.game.player);
+		if ((PlayerController.getX(GameController.getPlayer(this.game)) > 0
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.SOUTH)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.NORTH);
+	        this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
-		else if ((this.game.player.getX() < this.game.dungeon.rooms.length - 1
-	    		&& this.game.player.getFacing() == Direction.NORTH)) {
-	    	this.game.player.move(Direction.SOUTH);
-	    	this.getDungeonPanel().updateView(this.game.player);
+		else if ((PlayerController.getX(GameController.getPlayer(this.game)) < DungeonController.getXLength(
+						GameController.getDungeon(this.game)) - 1
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.NORTH)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.SOUTH);
+	    	this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
-		else if ((this.game.player.getY() > 0
-	    		&& this.game.player.getFacing() == Direction.EAST)) {
-	    	this.game.player.move(Direction.WEST);
-	    	this.getDungeonPanel().updateView(this.game.player);
+		else if ((PlayerController.getY(GameController.getPlayer(this.game)) > 0
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.EAST)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.WEST);
+	    	this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
-		else if ((this.game.player.getY() < this.game.dungeon.rooms[0].length - 1
-	    		&& this.game.player.getFacing() == Direction.WEST)) {
-	    	this.game.player.move(Direction.EAST);
-	    	this.getDungeonPanel().updateView(this.game.player);
+		else if ((PlayerController.getY(GameController.getPlayer(this.game)) < DungeonController.getYLength(
+						GameController.getDungeon(this.game)) - 1
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.WEST)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.EAST);
+	    	this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
 	}
 
@@ -301,25 +308,27 @@ public class GameWindow extends JPanel {
 	 * </p>
 	 */
 	private void moveLeft() {
-		if ((this.game.player.getX() > 0
-	    		&& this.game.player.getFacing() == Direction.EAST)) {
-	    	this.game.player.move(Direction.NORTH);
-	        this.getDungeonPanel().updateView(this.game.player);
+		if ((PlayerController.getX(GameController.getPlayer(this.game)) > 0
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.EAST)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.NORTH);
+	        this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
-		else if ((this.game.player.getX() < this.game.dungeon.rooms.length - 1
-	    		&& this.game.player.getFacing() == Direction.WEST)) {
-	    	this.game.player.move(Direction.SOUTH);
-	    	this.getDungeonPanel().updateView(this.game.player);
+		else if ((PlayerController.getX(GameController.getPlayer(this.game)) < DungeonController.getXLength(
+						GameController.getDungeon(this.game)) - 1
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.WEST)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.SOUTH);
+	    	this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
-		else if ((this.game.player.getY() > 0
-	    		&& this.game.player.getFacing() == Direction.NORTH)) {
-	    	this.game.player.move(Direction.WEST);
-	    	this.getDungeonPanel().updateView(this.game.player);
+		else if ((PlayerController.getY(GameController.getPlayer(this.game)) > 0
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.NORTH)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.WEST);
+	    	this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
-	    else if ((this.game.player.getY() < this.game.dungeon.rooms[0].length - 1
-	    		&& this.game.player.getFacing() == Direction.SOUTH)) {
-	    	this.game.player.move(Direction.EAST);
-	    	this.getDungeonPanel().updateView(this.game.player);
+	    else if ((PlayerController.getY(GameController.getPlayer(this.game)) < DungeonController.getYLength(
+						GameController.getDungeon(this.game)) - 1
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.SOUTH)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.EAST);
+	    	this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
 	}
 
@@ -331,25 +340,27 @@ public class GameWindow extends JPanel {
 	 * </p>
 	 */
 	private void moveRight() {
-		if ((this.game.player.getX() > 0
-	    		&& this.game.player.getFacing() == Direction.WEST)) {
-	    	this.game.player.move(Direction.NORTH);
-	        this.getDungeonPanel().updateView(this.game.player);
+		if ((PlayerController.getX(GameController.getPlayer(this.game)) > 0
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.WEST)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.NORTH);
+	        this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
-		else if ((this.game.player.getX() < this.game.dungeon.rooms.length - 1
-	    		&& this.game.player.getFacing() == Direction.EAST)) {
-	    	this.game.player.move(Direction.SOUTH);
-	    	this.getDungeonPanel().updateView(this.game.player);
+		else if ((PlayerController.getX(GameController.getPlayer(this.game)) < DungeonController.getXLength(
+						GameController.getDungeon(this.game)) - 1
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.EAST)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.SOUTH);
+	    	this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
-		else if ((this.game.player.getY() > 0
-	    		&& this.game.player.getFacing() == Direction.SOUTH)) {
-	    	this.game.player.move(Direction.WEST);
-	    	this.getDungeonPanel().updateView(this.game.player);
+		else if ((PlayerController.getY(GameController.getPlayer(this.game)) > 0
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.SOUTH)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.WEST);
+	    	this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
-		else if ((this.game.player.getY() < this.game.dungeon.rooms[0].length - 1
-	    		&& this.game.player.getFacing() == Direction.NORTH)) {
-	    	this.game.player.move(Direction.EAST);
-	    	this.getDungeonPanel().updateView(this.game.player);
+		else if ((PlayerController.getY(GameController.getPlayer(this.game)) < DungeonController.getYLength(
+						GameController.getDungeon(this.game)) - 1
+	    		&& PlayerController.getFacing(GameController.getPlayer(this.game)) == Direction.NORTH)) {
+	    	PlayerController.move(GameController.getPlayer(this.game), Direction.EAST);
+	    	this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	    }
 	}
 
@@ -357,16 +368,16 @@ public class GameWindow extends JPanel {
 	 * Rotates the player 90 degrees to the left and updates the dungeon view.
 	 */
 	private void turnLeft() {
-		this.game.player.turnLeft();
-		this.getDungeonPanel().updateView(this.game.player);
+		PlayerController.turnLeft(GameController.getPlayer(this.game));
+		this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	}
 
 	/**
 	 * Rotates the player 90 degrees to the right and updates the dungeon view.
 	 */
 	private void turnRight() {
-		this.game.player.turnRight();
-		this.getDungeonPanel().updateView(this.game.player);
+		PlayerController.turnRight(GameController.getPlayer(this.game));
+		this.getDungeonPanel().updateView(GameController.getPlayer(this.game));
 	}
 
 	/**
@@ -387,9 +398,9 @@ public class GameWindow extends JPanel {
 			this.frame.toggleIsFighting();
 			
 			EncounterSystem.battle(this.frame, battleView, battleView.getEnemies(),
-					this.game.player, battleView.getButtons());
+					GameController.getPlayer(this.game), battleView.getButtons());
 			
-			MusicPlayer.playCombat(frame.getMusicPlayer());
+			MusicPlayer.playCombat(this.frame.getMusicPlayer());
 		}
 	}
 	
@@ -397,6 +408,6 @@ public class GameWindow extends JPanel {
 	 * Updates the health bar to match the player's current health value.
 	 */
 	public void updatePlayerHealth() {
-		this.getHealthBar().setHealth(this.game.player.getHealth());
+		this.getHealthBar().setHealth(PlayerController.getHealth(GameController.getPlayer(this.game)));
 	}
 }

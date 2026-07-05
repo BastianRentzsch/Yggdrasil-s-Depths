@@ -28,6 +28,9 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
+import controller.GameController;
+import controller.ItemController;
+import controller.PlayerController;
 import model.Game;
 import model.items.Item;
 import model.items.Itemtype;
@@ -117,7 +120,7 @@ public class EquipmentSelectionDialog extends JDialog {
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(list);
 
-		List<Item> entries =  game.player.getInventory().getEquipments(type);
+		List<Item> entries = PlayerController.getEquipments(GameController.getPlayer(game), type);
 		list.setModel(new AbstractListModel<>() {
 			@Override
 		    public int getSize() {
@@ -142,27 +145,21 @@ public class EquipmentSelectionDialog extends JDialog {
 		        JLabel label = (JLabel) super.getListCellRendererComponent(
 		                list, value, index, isSelected, cellHasFocus);
 
-		        if (value instanceof Item item) {
-					if (item instanceof Weapon weapon) {
-						label.setText("<html>" + weapon.getName() +"<br>Attack: +" + weapon.getDamage() + "</html>");
-					}
-					else {
-						if (item instanceof Headwear headwear) {
-							label.setText("<html>" + headwear.getName() + "<br>Attack: +" + headwear.getDefense()
-									+ "</html>");
-						}
-						else if (item instanceof Armor armor) {
-							label.setText("<html>" + armor.getName() + "<br>Attack: +" + armor.getDefense()
-									+ "</html>");
-						}
-						else if (item instanceof Accessory accessory) {
-							label.setText("<html>" + accessory.getName() + "<br>Attack: +" + accessory.getDefense()
-									+ "</html>");
-						}
-					}
-		        }
-
-		        return label;
+				if (value instanceof Headwear headwear) {
+					label.setText("<html>" + ItemController.getName(headwear) + "<br>Defense: +"
+							+ ItemController.getStat(headwear)  + "</html>");
+				} else if (value instanceof Armor armor) {
+					label.setText("<html>" + ItemController.getName(armor) + "<br>Defense: +"
+							+ ItemController.getStat(armor)  + "</html>");
+				} else if (value instanceof Accessory accessory) {
+					label.setText("<html>" + ItemController.getName(accessory) + "<br>Defense: +"
+							+ ItemController.getStat(accessory)  + "</html>");
+				}
+				else if (value instanceof Weapon weapon) {
+					label.setText("<html>" + ItemController.getName(weapon) + "<br>Attack: +"
+							+ ItemController.getStat(weapon)  + "</html>");
+				}
+				return label;
 		    }
 		});
 

@@ -26,10 +26,11 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
+import controller.ItemController;
+import controller.PlayerController;
 import model.entity.Player;
 import model.items.Consumable;
 import model.items.Item;
-import model.items.Itemtype;
 import view.utils.ScrollBarUI;
 
 /**
@@ -97,7 +98,7 @@ public class ConsumableSelectionJDialog extends JDialog {
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(list);
 
-		List<Item> entries =  player.getInventory().getEquipments(Itemtype.CONSUMABLES);
+		List<Item> entries = PlayerController.getConsumables(player);
 		list.setModel(new AbstractListModel<>() {
 			@Override
 		    public int getSize() {
@@ -123,7 +124,8 @@ public class ConsumableSelectionJDialog extends JDialog {
 		                list, value, index, isSelected, cellHasFocus);
 
 		        if (value instanceof Item item) {
-		            label.setText("<html>" + item.getName() + "<br>" + item.getDescription() + "</html>");
+		            label.setText("<html>" + ItemController.getName(item) + "<br>"
+							+ ItemController.getDescription(item) + "</html>");
 		        }
 
 		        return label;

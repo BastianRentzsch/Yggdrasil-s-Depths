@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
+import controller.GameController;
+import controller.PlayerController;
 import model.Game;
 import view.GameFrame;
 import view.utils.SpriteImagePanel;
@@ -43,8 +45,8 @@ public class StatusScreen extends JPanel {
 		StatsPanel statsPanel = new StatsPanel(game);
 		this.add(statsPanel);
 
-		SpriteImagePanel characterImage = new SpriteImagePanel("./res/images/sprites/player/"
-				+ game.player.getGender() + ".png", true);
+		SpriteImagePanel characterImage = new SpriteImagePanel(PlayerController.getImagepath(
+				GameController.getPlayer(game)), true);
 		this.add(characterImage);
 
 		EquipmentPanel equipmentPanel = new EquipmentPanel(frame, statsPanel, game);

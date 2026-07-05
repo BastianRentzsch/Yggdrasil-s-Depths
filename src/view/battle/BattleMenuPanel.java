@@ -12,6 +12,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.LineBorder;
 
+import controller.GameController;
+import controller.PlayerController;
 import model.Game;
 import view.utils.HealthBar;
 
@@ -59,7 +61,8 @@ public class BattleMenuPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.2, 1.0};
 		this.setLayout(gridBagLayout);
 		
-		this.healthBar = new HealthBar(game.player.getMaxHealth(), game.player.getHealth());
+		this.healthBar = new HealthBar(PlayerController.getMaxHealth(GameController.getPlayer(game)),
+				PlayerController.getHealth(GameController.getPlayer(game)));
 		GridBagConstraints gbc_healthBar = new GridBagConstraints();
 		gbc_healthBar.gridwidth = 3;
 		gbc_healthBar.insets = new Insets(0, 0, 5, 5);

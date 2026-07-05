@@ -52,28 +52,26 @@ public class PlayerMenu extends JMenu {
 
 		this.setUI(new BasicMenuUI() {
 		    @Override
-		    protected void paintText(Graphics g, JMenuItem menuItem,
-		                             Rectangle textRect, String text) {
-		    		FontMetrics fm = g.getFontMetrics();
+		    protected void paintText(Graphics g, JMenuItem menuItem, Rectangle textRect, String text) {
+				FontMetrics fm = g.getFontMetrics();
 		        int x = (menuItem.getWidth() - fm.stringWidth(text)) / 2;
 		        int y = textRect.y + fm.getAscent();
 
-		        g.setColor(Color.WHITE);
+				g.setColor(Color.WHITE);
 		        g.drawString(text, x, y);
 		    }
 
 		    @Override
-		    protected void paintBackground(Graphics g, JMenuItem menuItem,
-		                                   Color bgColor) {
+		    protected void paintBackground(Graphics g, JMenuItem menuItem, Color bgColor) {
 		        ButtonModel model = menuItem.getModel();
 
 		        if (model.isSelected() || model.isArmed()) {
-		            g.setColor(new Color(255, 120, 0)); // Selected-Farbe
+		            g.setColor(new Color(255, 120, 0)); // Selected-Color
 		        } else {
 		            g.setColor(new Color(41, 37, 36));
 		        }
 
-		        g.fillRect(0, 0, menuItem.getWidth(), menuItem.getHeight());
+				g.fillRect(0, 0, menuItem.getWidth(), menuItem.getHeight());
 		    }
 		});
 
@@ -89,7 +87,7 @@ public class PlayerMenu extends JMenu {
 			@Override
             public void mouseExited(MouseEvent e) {
 				((PlayerMenu)e.getSource()).setSelected(false);
-			 }
+			}
 		});
 	}
 }

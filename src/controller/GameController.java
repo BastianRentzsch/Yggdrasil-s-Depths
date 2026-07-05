@@ -12,10 +12,13 @@ import model.entity.Player;
 import model.items.Item;
 
 /**
- * Utility class for creating and loading {@link Game} instances.
+ * Utility controller class responsible for creating, loading, and managing
+ * {@link Game} instances.
  * <p>
- * This class provides static methods to initialize a new game or restore
- * a previously saved game. It cannot be instantiated.
+ * This class provides static methods for initializing new games, loading
+ * saved games, and accessing the main game components such as the player,
+ * dungeon, and enemies.
+ * </p>
  * 
  * @author Bastian Rentzsch
  * @since 2026
@@ -68,5 +71,45 @@ public class GameController {
 		Dungeon dungeon = player.getDungeon();
 		
 		return new Game(dungeon, player, items, enemies);
+	}
+
+	/**
+     * Returns all enemies available in the game.
+     *
+     * @param game the game instance
+     * @return an array containing all enemies
+     */
+	public static Enemy[] getEnemies(Game game) {
+		return game.enemies;
+	}
+	
+	/**
+     * Returns the current player.
+     *
+     * @param game the game instance
+     * @return the player
+     */
+	public static Player getPlayer(Game game) {
+		return game.player;
+	}
+	
+	/**
+     * Returns the game's dungeon.
+     *
+     * @param game the game instance
+     * @return the dungeon
+     */
+	public static Dungeon getDungeon(Game game) {
+		return game.dungeon;
+	}
+	
+	/**
+     * Sets the current player for the game.
+     *
+     * @param game   the game instance
+     * @param player the player to assign
+     */
+	public static void setPlayer(Game game, Player player) {
+		game.player = player;
 	}
 }

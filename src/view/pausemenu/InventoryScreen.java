@@ -28,6 +28,9 @@ import javax.swing.UIManager;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import controller.GameController;
+import controller.ItemController;
+import controller.PlayerController;
 import model.Game;
 import model.items.Item;
 import model.items.Itemtype;
@@ -152,7 +155,7 @@ public class InventoryScreen extends JPanel {
 		scrollPane.setViewportView(list);
 
 		List<String> entries = new ArrayList<>();
-		for (Map.Entry<Item, Integer> e : game.player.getInventory().getItems().entrySet()) {
+		for (Map.Entry<Item, Integer> e : PlayerController.getInventory(GameController.getPlayer(game))) {
 		    entries.add(e.getKey().getName());
 		}
 
@@ -173,39 +176,19 @@ public class InventoryScreen extends JPanel {
 		        if (!e.getValueIsAdjusting()) {
 		            String selected = list.getSelectedValue();
 		            if (selected != null) {
-		            		Map.Entry<Item, Integer> result = game.player.getInventory().getItem(selected);
+		            		Map.Entry<Item, Integer> result = PlayerController.getItemFromInventory(
+									GameController.getPlayer(game), selected);
 
 		            		if (result != null) {
 		            			Item item = result.getKey();
 		            			int amount = result.getValue();
 
-		            			String imagepath = "./res/images/items/";
-
-		            			if (item.getType() == Itemtype.HEADWEAR) {
-		            				imagepath += "headwear/" + item.getImagename();
-		            			}
-		            			else if (item.getType() == Itemtype.ARMOR) {
-		            				imagepath += "armor/" + item.getImagename();
-		            			}
-		            			else if (item.getType() == Itemtype.ACCESSORY) {
-		            				imagepath += "accessory/" + item.getImagename();
-		            			}
-		            			else if (item.getType() == Itemtype.WEAPON) {
-		            				imagepath += "weapon/" + item.getImagename();
-		            			}
-		            			else if (item.getType() == Itemtype.CONSUMABLES) {
-		            				imagepath += "consumables/" + item.getImagename();
-		            			}
-		            			else {
-		            				imagepath += item.getImagename();
-		            			}
-
-		            			ImageIcon icon = new ImageIcon(imagepath);
+		            			ImageIcon icon = new ImageIcon(ItemController.getImagePath(item));
 		            			lblItemImage.setIcon(icon);
 
-		            			lblItemname.setText(item.getName());
+		            			lblItemname.setText(ItemController.getName(item));
 			                lblItemAmount.setText("Amount:    " + amount + "x");
-			                textDescription.setText(item.getDescription());
+			                textDescription.setText(ItemController.getDescription(item));
 		            		}
 		            }
 		        }

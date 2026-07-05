@@ -20,6 +20,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controller.GameController;
+import controller.ItemController;
+import controller.PlayerController;
 import model.Game;
 import model.items.Item;
 import model.items.Itemtype;
@@ -85,10 +88,12 @@ public class EquipmentPanel extends JPanel {
 		String accessoryText = "";
 		String weaponText = "";
 
-		Headwear headwear = (Headwear) game.player.getEquipment(EquipmentSlot.HEADWEAR);
-		Armor armor = (Armor) game.player.getEquipment(EquipmentSlot.ARMOR);
-		Accessory accessory = (Accessory) game.player.getEquipment(EquipmentSlot.ACCESSORY);
-		Weapon weapon = (Weapon) game.player.getEquipment(EquipmentSlot.WEAPON);
+		Headwear headwear = (Headwear) PlayerController.getEquipment(GameController.getPlayer(game),
+				EquipmentSlot.HEADWEAR);
+		Armor armor = (Armor) PlayerController.getEquipment(GameController.getPlayer(game), EquipmentSlot.ARMOR);
+		Accessory accessory = (Accessory) PlayerController.getEquipment(GameController.getPlayer(game),
+				EquipmentSlot.ACCESSORY);
+		Weapon weapon = (Weapon) PlayerController.getEquipment(GameController.getPlayer(game), EquipmentSlot.WEAPON);
 
 		try {
 			if (headwear == null) {
@@ -96,9 +101,9 @@ public class EquipmentPanel extends JPanel {
 				headwearText = "<html><h3>No Headwear equiped</h3></html>";
 			}
 			else {
-				this.headwearImage = ImageIO.read(new File("./res/images/items/headwear/"
-						+ headwear.getImagename()));
-				headwearText = headwear.getName();
+				this.headwearImage = ImageIO.read(new File(ItemController.getImagePath(headwear)));
+				headwearText = "<html>" + ItemController.getName(headwear) + "<br>Defense: +"
+						+ ItemController.getStat(headwear)  + "</html>";
 			}
 
 			if (armor == null) {
@@ -106,9 +111,9 @@ public class EquipmentPanel extends JPanel {
 				armorText = "<html><h3>No Armor equiped</h3></html>";
 			}
 			else {
-				this.armorImage = ImageIO.read(new File("./res/images/items/armor/"
-						+ armor.getImagename()));
-				armorText = armor.getName();
+				this.armorImage = ImageIO.read(new File(ItemController.getImagePath(armor)));
+				armorText = "<html>" + ItemController.getName(armor) + "<br>Defense: +"
+						+ ItemController.getStat(armor)  + "</html>";
 			}
 
 			if (accessory == null) {
@@ -117,9 +122,9 @@ public class EquipmentPanel extends JPanel {
 				accessoryText = "<html><h3>No Accessory equiped</h3></html>";
 			}
 			else {
-				this.accessoryImage = ImageIO.read(new File("./res/images/items/accessory/"
-						+ accessory.getImagename()));
-				accessoryText = accessory.getName();
+				this.accessoryImage = ImageIO.read(new File(ItemController.getImagePath(accessory)));
+				accessoryText = "<html>" + ItemController.getName(accessory) + "<br>Defense: +"
+						+ ItemController.getStat(accessory)  + "</html>";
 			}
 
 			if (weapon == null) {
@@ -127,9 +132,9 @@ public class EquipmentPanel extends JPanel {
 				weaponText = "<html><h3>No Weapon equiped</h3></html>";
 			}
 			else {
-				this.weaponImage = ImageIO.read(new File("./res/images/items/weapon/"
-						+ weapon.getImagename()));
-				weaponText = weapon.getName();
+				this.weaponImage = ImageIO.read(new File(ItemController.getImagePath(weapon)));
+				weaponText = "<html>" + ItemController.getName(weapon) + "<br>Attack: +"
+						+ ItemController.getStat(weapon)  + "</html>";
 			}
 		}
 		catch (IOException e) {
@@ -155,7 +160,7 @@ public class EquipmentPanel extends JPanel {
 						(StatusScreen) btnHeadwear.getParent().getParent(), game, Itemtype.HEADWEAR);
 
 				if (selected.getValue()) {
-					game.player.unequip(EquipmentSlot.HEADWEAR);
+					PlayerController.unequip(GameController.getPlayer(game), EquipmentSlot.HEADWEAR);
 					try {
 						headwearImage = ImageIO.read(new File(
 								"./res/images/items/headwear/headwear_slot.png"));
@@ -166,25 +171,24 @@ public class EquipmentPanel extends JPanel {
 					btnHeadwear.setIcon(new ImageIcon(headwearImage));
 					btnHeadwear.setText("<html><h3>No Headwear equiped</h3></html>");
 
-					statsPanel.updateStats(game.player);
+					statsPanel.updateStats(GameController.getPlayer(game));
 
 					InventoryScreen inventoryScreen = new InventoryScreen(game);
 			        frame.addCard(inventoryScreen, GameFrame.INVENTORY);
 				}
-				else if (selected.getKey() != null && !selected.getValue()) {
-					game.player.equip(selected.getKey());
+				else if (selected.getKey() != null) {
+					PlayerController.equip(GameController.getPlayer(game), selected.getKey());
 					try {
-						headwearImage = ImageIO.read(new File("./res/images/items/headwear/"
-								+ selected.getKey().getImagename()));
+						headwearImage = ImageIO.read(new File(ItemController.getImagePath(selected.getKey())));
 					}
 					catch (IOException ex) {
 						System.err.println("Error loading graphics");
 					}
 					btnHeadwear.setIcon(new ImageIcon(headwearImage));
-					btnHeadwear.setText("<html>" + selected.getKey().getName() + "<br>Defense: +"
-							+ ((Headwear) selected.getKey()).getDefense()  + "</html>");
+					btnHeadwear.setText("<html>" + ItemController.getName(selected.getKey()) + "<br>Defense: +"
+							+ ItemController.getStat(selected.getKey())  + "</html>");
 
-					statsPanel.updateStats(game.player);
+					statsPanel.updateStats(GameController.getPlayer(game));
 
 					InventoryScreen inventoryScreen = new InventoryScreen(game);
 			        frame.addCard(inventoryScreen, GameFrame.INVENTORY);
@@ -218,7 +222,7 @@ public class EquipmentPanel extends JPanel {
 						(StatusScreen) btnArmor.getParent().getParent(), game, Itemtype.ARMOR);
 
 				if (selected.getValue()) {
-					game.player.unequip(EquipmentSlot.ARMOR);
+					PlayerController.unequip(GameController.getPlayer(game), EquipmentSlot.ARMOR);
 					try {
 						armorImage = ImageIO.read(new File("./res/images/items/armor/armor_slot.png"));
 					}
@@ -228,21 +232,20 @@ public class EquipmentPanel extends JPanel {
 					btnArmor.setIcon(new ImageIcon(armorImage));
 					btnArmor.setText("<html><h3>No Armor equiped</h3></html>");
 				}
-				else if (selected.getKey() != null && !selected.getValue()) {
-					game.player.equip(selected.getKey());
+				else if (selected.getKey() != null) {
+					PlayerController.equip(GameController.getPlayer(game), selected.getKey());
 					try {
-						armorImage = ImageIO.read(new File("./res/images/items/armor/"
-								+ selected.getKey().getImagename()));
+						armorImage = ImageIO.read(new File(ItemController.getImagePath(selected.getKey())));
 					}
 					catch (IOException ex) {
 						System.err.println("Error loading graphics");
 					}
 					btnArmor.setIcon(new ImageIcon(armorImage));
-					btnArmor.setText("<html>" + selected.getKey().getName() + "<br>Defense: +"
-							+ ((Armor) selected.getKey()).getDefense()  + "</html>");
+					btnArmor.setText("<html>" + ItemController.getName(selected.getKey()) + "<br>Defense: +"
+							+ ItemController.getStat(selected.getKey())  + "</html>");
 				}
 				
-				statsPanel.updateStats(game.player);
+				statsPanel.updateStats(GameController.getPlayer(game));
 
 				InventoryScreen inventoryScreen = new InventoryScreen(game);
 		        frame.addCard(inventoryScreen, GameFrame.INVENTORY);
@@ -275,7 +278,7 @@ public class EquipmentPanel extends JPanel {
 						(StatusScreen) btnAccessory.getParent().getParent(), game, Itemtype.ACCESSORY);
 
 				if (selected.getValue()) {
-					game.player.unequip(EquipmentSlot.ACCESSORY);
+					PlayerController.unequip(GameController.getPlayer(game), EquipmentSlot.ACCESSORY);
 					try {
 						accessoryImage = ImageIO.read(new File(
 								"./res/images/items/accessory/accessory_slot.png"));
@@ -286,25 +289,24 @@ public class EquipmentPanel extends JPanel {
 					btnAccessory.setIcon(new ImageIcon(accessoryImage));
 					btnAccessory.setText("<html><h3>No Accessory equiped</h3></html>");
 
-					statsPanel.updateStats(game.player);
+					statsPanel.updateStats(GameController.getPlayer(game));
 
 					InventoryScreen inventoryScreen = new InventoryScreen(game);
 			        frame.addCard(inventoryScreen, GameFrame.INVENTORY);
 				}
-				else if (selected.getKey() != null && !selected.getValue()) {
-					game.player.equip(selected.getKey());
+				else if (selected.getKey() != null) {
+					PlayerController.equip(GameController.getPlayer(game), selected.getKey());
 					try {
-						accessoryImage = ImageIO.read(new File("./res/images/items/accessory/"
-								+ selected.getKey().getImagename()));
+						accessoryImage = ImageIO.read(new File(ItemController.getImagePath(selected.getKey())));
 					}
 					catch (IOException ex) {
 						System.err.println("Error loading graphics");
 					}
 					btnAccessory.setIcon(new ImageIcon(accessoryImage));
-					btnAccessory.setText("<html>" + selected.getKey().getName() + "<br>Defense: +"
-							+ ((Accessory) selected.getKey()).getDefense()  + "</html>");
+					btnAccessory.setText("<html>" + ItemController.getName(selected.getKey()) + "<br>Defense: +"
+							+ ItemController.getStat(selected.getKey()) + "</html>");
 
-					statsPanel.updateStats(game.player);
+					statsPanel.updateStats(GameController.getPlayer(game));
 
 					InventoryScreen inventoryScreen = new InventoryScreen(game);
 			        frame.addCard(inventoryScreen, GameFrame.INVENTORY);
@@ -338,7 +340,7 @@ public class EquipmentPanel extends JPanel {
 						(StatusScreen) btnWeapon.getParent().getParent(), game, Itemtype.WEAPON);
 
 				if (selected.getValue()) {
-					game.player.unequip(EquipmentSlot.WEAPON);
+					PlayerController.unequip(GameController.getPlayer(game), EquipmentSlot.WEAPON);
 					try {
 						weaponImage = ImageIO.read(new File("./res/images/items/weapon/weapon_slot.png"));
 					}
@@ -348,25 +350,24 @@ public class EquipmentPanel extends JPanel {
 					btnWeapon.setIcon(new ImageIcon(weaponImage));
 					btnWeapon.setText("<html><h3>No Weapon equiped</h3></html>");
 
-					statsPanel.updateStats(game.player);
+					statsPanel.updateStats(GameController.getPlayer(game));
 
 					InventoryScreen inventoryScreen = new InventoryScreen(game);
 			        frame.addCard(inventoryScreen, GameFrame.INVENTORY);
 				}
-				else if (selected.getKey() != null && !selected.getValue()) {
-					game.player.equip(selected.getKey());
+				else if (selected.getKey() != null) {
+					PlayerController.equip(GameController.getPlayer(game), selected.getKey());
 					try {
-						weaponImage = ImageIO.read(new File("./res/images/items/weapon/"
-								+ selected.getKey().getImagename()));
+						weaponImage = ImageIO.read(new File(ItemController.getImagePath(selected.getKey())));
 					}
 					catch (IOException ex) {
 						System.err.println("Error loading graphics");
 					}
 					btnWeapon.setIcon(new ImageIcon(weaponImage));
-					btnWeapon.setText("<html>" + selected.getKey().getName() + "<br>Attack: +"
-							+ ((Weapon) selected.getKey()).getDamage()  + "</html>");
+					btnWeapon.setText("<html>" + ItemController.getName(selected.getKey()) + "<br>Attack: +"
+							+ ItemController.getStat(selected.getKey())  + "</html>");
 
-					statsPanel.updateStats(game.player);
+					statsPanel.updateStats(GameController.getPlayer(game));
 
 					InventoryScreen inventoryScreen = new InventoryScreen(game);
 			        frame.addCard(inventoryScreen, GameFrame.INVENTORY);

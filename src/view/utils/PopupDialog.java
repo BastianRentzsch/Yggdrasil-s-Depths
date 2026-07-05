@@ -92,7 +92,6 @@ public class PopupDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				dialog.dispose();
 			}
-
 	    });
 	    timer.setRepeats(false);
 	    timer.start();

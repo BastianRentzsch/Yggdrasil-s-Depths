@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
+import controller.GameController;
+import controller.PlayerController;
 import model.Game;
 import model.entity.Player;
 
@@ -69,7 +71,7 @@ public class StatsPanel extends JPanel {
 		gbl_statsPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		this.setLayout(gbl_statsPanel);
 
-		JLabel lblPlayername = new JLabel(game.player.getName());
+		JLabel lblPlayername = new JLabel(PlayerController.getName(GameController.getPlayer(game)));
 		lblPlayername.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlayername.setForeground(Color.WHITE);
 		lblPlayername.setFont(new Font("SansSerif", Font.BOLD, 20));
@@ -102,7 +104,8 @@ public class StatsPanel extends JPanel {
 		gbc_lblHealth.gridy = 4;
 		this.add(lblHealth, gbc_lblHealth);
 
-		this.lblHealthAmount = new JLabel(game.player.getHealth() + " / " + game.player.getMaxHealth());
+		this.lblHealthAmount = new JLabel(PlayerController.getHealth(GameController.getPlayer(game)) + " / "
+				+ PlayerController.getMaxHealth(GameController.getPlayer(game)));
 		this.lblHealthAmount.setHorizontalAlignment(SwingConstants.LEFT);
 		this.lblHealthAmount.setForeground(Color.WHITE);
 		this.lblHealthAmount.setFont(new Font("SansSerif", Font.BOLD, 15));
@@ -123,7 +126,7 @@ public class StatsPanel extends JPanel {
 		gbc_lblPhyAttack.gridy = 5;
 		this.add(lblPhyAttack, gbc_lblPhyAttack);
 
-		this.lblAttackAmount = new JLabel(Integer.toString(game.player.getDamage()));
+		this.lblAttackAmount = new JLabel(Integer.toString(PlayerController.getDamage(GameController.getPlayer(game))));
 		this.lblAttackAmount.setForeground(Color.WHITE);
 		this.lblAttackAmount.setFont(new Font("SansSerif", Font.BOLD, 15));
 		this.lblAttackAmount.setAlignmentX(0.5f);
@@ -145,7 +148,7 @@ public class StatsPanel extends JPanel {
 		gbc_lblPhyDefence.gridy = 6;
 		this.add(lblPhyDefence, gbc_lblPhyDefence);
 
-		this.lblDefenceAmount = new JLabel(Integer.toString(game.player.getDefense()));
+		this.lblDefenceAmount = new JLabel(Integer.toString(PlayerController.getDefense(GameController.getPlayer(game))));
 		this.lblDefenceAmount.setForeground(Color.WHITE);
 		this.lblDefenceAmount.setFont(new Font("SansSerif", Font.BOLD, 15));
 		this.lblDefenceAmount.setAlignmentX(0.5f);
@@ -196,9 +199,9 @@ public class StatsPanel extends JPanel {
      * @param player the player whose current stats should be displayed
      */
 	public void updateStats(Player player) {
-		this.lblHealthAmount.setText(player.getHealth() + " / " + player.getMaxHealth());
-		this.lblAttackAmount.setText(Integer.toString(player.getDamage()));
-		this.lblDefenceAmount.setText(Integer.toString(player.getDefense()));
+		this.lblHealthAmount.setText(PlayerController.getHealth(player) + " / " + PlayerController.getMaxHealth(player));
+		this.lblAttackAmount.setText(Integer.toString(PlayerController.getDamage(player)));
+		this.lblDefenceAmount.setText(Integer.toString(PlayerController.getDefense(player)));
 
 		this.revalidate();
 		this.repaint();

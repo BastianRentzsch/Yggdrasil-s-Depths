@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
 import audio.MusicPlayer;
+import controller.GameController;
 import controller.SavedataHandler;
 import model.Game;
 import view.GameFrame;
@@ -72,7 +73,7 @@ public class OptionScreen extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					SavedataHandler.save(game.player);
+					SavedataHandler.save(GameController.getPlayer(game));
 					PopupDialog.showDialog(frame, "The game was successfully saved.", PopupDialog.PLAIN);
 				} catch (IOException ex) {
 					PopupDialog.showDialog(frame, "The game could not be successfully saved.",
@@ -85,9 +86,16 @@ public class OptionScreen extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-				game.player = SavedataHandler.load();
-				frame.getWindow().getDungeonPanel().updateView(game.player);
-				PopupDialog.showDialog(frame, "The game has successfully loaded.", PopupDialog.PLAIN);
+					GameController.setPlayer(game, SavedataHandler.load());
+					frame.getWindow().getDungeonPanel().updateView(GameController.getPlayer(game));
+
+					StatusScreen statusScreen = new StatusScreen(frame, game);
+					frame.addCard(statusScreen, GameFrame.STATUS);
+
+					InventoryScreen inventoryScreen = new InventoryScreen(game);
+					frame.addCard(inventoryScreen, GameFrame.INVENTORY);
+
+					PopupDialog.showDialog(frame, "The game has successfully loaded.", PopupDialog.PLAIN);
 				} catch (IOException | ClassNotFoundException ex) {
 					PopupDialog.showDialog(frame, "The game could not be successfully loaded.",
 							PopupDialog.ERROR);

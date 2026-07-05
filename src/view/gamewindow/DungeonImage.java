@@ -11,10 +11,9 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import controller.DungeonController;
 import model.dungeon.Direction;
 import model.dungeon.Dungeon;
-
-record ExitCheck(int dx, int dy, Direction dir) {}
 
 /**
  * Utility class responsible for rendering a pseudo-3D first-person view
@@ -37,7 +36,7 @@ public class DungeonImage {
 	/**
      * The dungeon data used for rendering visibility and room structure.
      */
-    private Dungeon dungeon;
+    private final Dungeon dungeon;
 
     /**
      * Cache of preloaded images mapped by a string key.
@@ -134,8 +133,8 @@ public class DungeonImage {
      */
 	private boolean roomExists(int x, int y) {
 		return x >= 0 && y >= 0
-			&& x < this.dungeon.rooms.length
-			&& y < this.dungeon.rooms[0].length;
+			&& x < DungeonController.getXLength(this.dungeon)
+			&& y < DungeonController.getYLength(this.dungeon);
 	}
 
 	/**
@@ -149,7 +148,7 @@ public class DungeonImage {
      */
 	private boolean hasExit(int x, int y, Direction dir) {
 		return this.roomExists(x, y)
-				&& this.dungeon.rooms[x][y].exits.containsKey(dir);
+				&& DungeonController.roomContainsExit(this.dungeon, x, y, dir);
 	}
 
 	/**

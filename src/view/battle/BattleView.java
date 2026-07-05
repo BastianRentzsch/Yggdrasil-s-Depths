@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import controller.EncounterSystem;
+import controller.GameController;
 import model.Game;
 import model.entity.Enemy;
 
@@ -60,7 +61,7 @@ public class BattleView extends JPanel {
 		gridBagLayout.rowWeights = new double[]{1.0, 0.3};
 		this.setLayout(gridBagLayout);
 		
-		Enemy[] enemies = EncounterSystem.getEnemies(game.enemies);
+		Enemy[] enemies = EncounterSystem.getEnemiesForBattle(GameController.getEnemies(game));
 		
 		this.enemiesViewPanel = new EnemiesViewPanel(enemies);
 		GridBagConstraints gbc_enemiesViewPanel = new GridBagConstraints();
