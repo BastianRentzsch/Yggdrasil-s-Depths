@@ -33,7 +33,6 @@ import controller.ItemController;
 import controller.PlayerController;
 import model.Game;
 import model.items.Item;
-import model.items.Itemtype;
 import view.utils.ScrollBarUI;
 
 /**

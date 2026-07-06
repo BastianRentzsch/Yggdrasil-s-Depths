@@ -24,7 +24,6 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
 import audio.MusicPlayer;
-import controller.GameController;
 import controller.PlayerController;
 import model.Game;
 import view.gamewindow.GameWindow;

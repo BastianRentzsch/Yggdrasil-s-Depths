@@ -108,8 +108,6 @@ public class MainMenu extends JPanel {
 		btnLoadGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.setGameIsRunning(true);
-
 				Game game;
 
 				try {
@@ -119,7 +117,8 @@ public class MainMenu extends JPanel {
 							PopupDialog.ERROR);
 					return;
 				}
-
+				frame.setGameIsRunning(true);
+				
 				GameWindow gameWindow = new GameWindow(frame, game);
 				frame.setGameWindow(gameWindow);
 
